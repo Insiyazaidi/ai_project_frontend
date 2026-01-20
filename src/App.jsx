@@ -5,7 +5,7 @@ const App=()=>{
   const loading = false 
   if(loading){
     return(
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <p>Loading...</p>
       </div>
     )
