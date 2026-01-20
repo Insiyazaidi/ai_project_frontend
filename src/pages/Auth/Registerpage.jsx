@@ -2,7 +2,9 @@ import React from 'react'
 
 const Registerpage = () => {
   return (
-    <div>Registerpage</div>
+    <div>
+        <h1>Register page </h1>
+    </div>
   )
 }
 

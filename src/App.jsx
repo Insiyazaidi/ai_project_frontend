@@ -1,8 +1,10 @@
 import { BrowserRouter as Router , Routes , Route , Navigate } from "react-router-dom"
-
+import Loginpage from "./pages/auth/Loginpage";
+import Registerpage from "./pages/auth/Registerpage";
+import Notfoundpage from "./pages/Notfoundpage";
 const App=()=>{
   const isAuthenticated = false ; 
-  const loading = false 
+  const loading = false; 
   if(loading){
     return(
       <div className="flex items-center justify-center h-screen">
@@ -14,9 +16,9 @@ const App=()=>{
 <Router>
   <Routes>
     <Route path="/" element={isAuthenticated ? <Navigate to ="/dashboard" replace/> : <Navigate to="/login" replace/>}></Route>
-    <Route path="/login" element={<LoginPage/>}/>
-    <Route path="/register" element={<RegisterPage/>}/>
-    <Route path="*" element={<NotFoundPage/>}/>
+    <Route path="/login" element={<Loginpage/>}/>
+    <Route path="/register" element={<Registerpage/>}/>
+    <Route path="*" element={<Notfoundpage/>}/>
   </Routes>
 </Router>
   )
