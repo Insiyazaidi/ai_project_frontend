@@ -10,6 +10,7 @@ import Documentlistpage from "./pages/Documents/Documentlistpage";
 import Flashcardlistpage from "./pages/Flashcards/Flashcardlistpage";
 import Flashcardpage from "./pages/Flashcards/Flashcardpage";
 import Profilepage from "./pages/Profile/Profilepage";
+import Protectedroute from "./components/auth/Protectedroute";
 const App=()=>{
   const isAuthenticated = false ; 
   const loading = false; 
@@ -26,7 +27,7 @@ const App=()=>{
     <Route path="/" element={isAuthenticated ? <Navigate to ="/dashboard" replace/> : <Navigate to="/login" replace/>}></Route>
     <Route path="/login" element={<Loginpage/>}/>
     <Route path="/register" element={<Registerpage/>}/>
-    <Route path="*" element={<Notfoundpage/>}/>
+   <Route element={<Protectedroute/>}/>
     <Route path="/dashboard" element={<Dashboardpage/>}/>
      <Route path="/documents/:id" element={<Documentdetailpage/>}/>
     <Route path="/documents" element={<Documentlistpage/>}/>
@@ -35,6 +36,7 @@ const App=()=>{
     <Route path="/quizzes/:quizId" element={<Quiztakepage/>}/>
     <Route path="/quizzes/:quizId/results" element={<Quizresultpage/>}/>
     <Route path="/profile" element={<Profilepage/>}/>
+     <Route path="*" element={<Notfoundpage/>}/>
   </Routes>
 </Router>
   )
