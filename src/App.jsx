@@ -11,9 +11,9 @@ import Flashcardlistpage from "./pages/Flashcards/Flashcardlistpage";
 import Flashcardpage from "./pages/Flashcards/Flashcardpage";
 import Profilepage from "./pages/Profile/Profilepage";
 import Protectedroute from "./components/auth/Protectedroute";
+import { useAuth } from "./context/Authcontext";
 const App=()=>{
-  const isAuthenticated = false ; 
-  const loading = false; 
+const {isAuthenticated , loading} = useAuth()
   if(loading){
     return(
       <div className="flex items-center justify-center h-screen">
