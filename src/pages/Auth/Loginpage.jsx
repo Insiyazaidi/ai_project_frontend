@@ -1,12 +1,35 @@
 import React, { useState } from 'react'
 import {BrainCircuit , Mail , Lock , ArrowRight} from "lucide-react"
+import { useNavigate } from 'react-router'
+import { useAuth } from '../../context/Authcontext'
+import authservice from '../../services/authservice'
+import toast from "react-hot-toast"
+import { Link } from 'react-router'
 const Loginpage = () => {
   const [loading , setLoading] = useState(false)
   const [password , setpassword]= useState("123454321")
   const [email , setemail] = useState("zaidiinsiya83@gmail.com")
   const [focusedfield , setfocusedfield] = useState(null)
   const [error , seterror] = useState("")
- 
+ const navigate = useNavigate()
+ const {login} = useAuth();
+ const handlesubmit = async()=>{
+  e.preventDefault()
+  seterror("")
+  setLoading(true)
+  try {
+    const {token , user} = await authservice.login(email , password)
+    login(user , token)
+    toast.success("Logged in successfully")
+    navigate("/dashboard")
+  } catch (error) {
+    seterror(error.message || "failed to login .Please check your credentails")
+ toast.error(error.message || "failed to login")
+  }
+  finally{
+    setLoading(false)
+  }
+ }
   return(
     <div className='flex items-center justify-center min-h-screen bg-linear from-slate-50 via-white to-slate-100'>
       <div className=' absolute insert-0 bg-[radial-gradient(#e5e7eb_1px, transparent_1px)] bg-size-[16px_16px] opacity-30'>
@@ -49,28 +72,30 @@ const Loginpage = () => {
 
 {error && (
   <div className='rounded-lg bg-red border-red-200 p-3'>
-    <p>{error}</p>
+    <p className='text-xs text-red-600 font-medium text-center'>{error}</p>
   </div>
 )}
-<button onClick={handlesubmit} disabled={loading}><span>{loading ? (
+<button onClick={handlesubmit} disabled={loading} className='group relative w-full h-12 bg-linear-to-r from-emerald-500 to teal-500 hover:from-emerald-600 hover:to-teal-600 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 shadow-lg shadow-emerald-500 overflow-hidden'><span
+className='relative z-10 flex items-center justify-center gap-2'
+>{loading ? (
  <>
- <div className=''>Signing in ...</div>
+ <div className='w-4 h-4 border-2 border-white/30  border-t-white  rounded-full animate-spin'>Signing in ...</div>
  </>
 ): <>
-Sign in <ArrowRight className='' strokeWidth={2.5}/>
+Sign in <ArrowRight className='w-4 h-4 group-hover:translate-x-1 transition-transform diration-200' strokeWidth={2.5}/>
 </>}
 </span>
-<div></div>
+<div className='absolute insert-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-200'></div>
 
 </button>
 </div>
 
-<div>
-  <p>Don't have an account? {" "}<Link to = "/register">Sign up</Link></p>
+<div className='mt-8 pt-6 border-slate-200/600 '>
+  <p className=' text-centertext-sm text-slate-600'>Don't have an account? {" "}<Link to = "/register" className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors transition-200">Sign up</Link></p>
 </div>
           </div>
 
-          <p>By continuing , you agree to our Terms & Privacy Policy</p>
+          <p className='text-center text-x5 text-slate-400 mt-6'>By continuing , you agree to our Terms & Privacy Policy</p>
         </div>
       </div>
     </div>
