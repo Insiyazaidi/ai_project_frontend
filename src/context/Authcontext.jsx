@@ -12,7 +12,7 @@ export const useAuth = ()=>{ // custom hook that gives access to authentication 
 
 export const AuthProvider = (props)=>{
     const [user , setUser] = useState(null)
-    const [loading , setLoading] = useState(true)
+    const [loading , setLoading] = useState(false)
     const [isAuthenticated ,setIsAuthenticated ] = useState(false)
     useEffect(()=>{
         checkAuthStatus();

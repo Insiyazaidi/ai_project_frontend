@@ -1,17 +1,17 @@
 import { BrowserRouter as Router , Routes , Route , Navigate } from "react-router-dom"
-import Loginpage from "./pages/auth/Loginpage";
-import Registerpage from "./pages/auth/Registerpage";
-import Notfoundpage from "./pages/Notfoundpage";
-import Dashboardpage from "./pages/dashboard/Dashboardpage";
-import Quiztakepage from "./pages/Quizzes/Quiztakepage";
-import Quizresultpage from "./pages/Quizzes/Quizresultpage";
-import Documentdetailpage from "./pages/Documents/Documentdetailpage";
-import Documentlistpage from "./pages/Documents/Documentlistpage";
-import Flashcardlistpage from "./pages/Flashcards/Flashcardlistpage";
-import Flashcardpage from "./pages/Flashcards/Flashcardpage";
-import Profilepage from "./pages/Profile/Profilepage";
-import Protectedroute from "./components/auth/Protectedroute";
-import { useAuth } from "./context/Authcontext";
+import Loginpage from "./pages/auth/Loginpage.jsx";
+import Registerpage from "./pages/auth/Registerpage.jsx";
+import Notfoundpage from "./pages/Notfoundpage.jsx";
+import Dashboardpage from "./pages/dashboard/Dashboardpage.jsx";
+import Quiztakepage from "./pages/Quizzes/Quiztakepage.jsx";
+import Quizresultpage from "./pages/Quizzes/Quizresultpage.jsx";
+import Documentdetailpage from "./pages/Documents/Documentdetailpage.jsx";
+import Documentlistpage from "./pages/Documents/Documentlistpage.jsx";
+import Flashcardlistpage from "./pages/Flashcards/Flashcardlistpage.jsx";
+import Flashcardpage from "./pages/Flashcards/Flashcardpage.jsx";
+import Profilepage from "./pages/Profile/Profilepage.jsx";
+import Protectedroute from "./components/auth/Protectedroute.jsx";
+import { useAuth } from "./context/Authcontext.jsx";
 const App=()=>{
 const {isAuthenticated , loading} = useAuth()
   if(loading){
