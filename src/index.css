@@ -5,7 +5,16 @@
 @theme{
   --font-display:"Urbanist" , sans-serif;
   --breakpoint-3xl:1920px;
-  --color-primary:#FF9324;
+  --color-primary: #387478;
+  --color-primary-dark: #243642;
+  --color-secondary: #629584;
+  --color-soft: #E2F1E7;
+
+  --color-bg-card: #ffffff;
+  --color-text-main: #243642;
+  --color-text-muted: #629584;
+
+
 }
 @layer base {
   html{
