@@ -21,8 +21,8 @@ const Loginpage = () => {
     setLoading(true);
 
     try {
-      const { token, user } = await authservice.login(email, password);
-      login(user, token);
+      const { token, user } = await authservice.login(email, password); //  yeh frontend se axios ki help se req bhejne ke liye function h 
+      login(user, token);  // yeh auth context vla login  h jo token aur user ka data save krega 
       toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {
@@ -36,7 +36,7 @@ const Loginpage = () => {
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100">
 
-      {/* Background pattern (FIXED BLUR ISSUE) */}
+     
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px] opacity-30 pointer-events-none"></div>
 
       {/* Card */}
@@ -90,6 +90,9 @@ const Loginpage = () => {
               </div>
             </div>
 
+
+
+
             {/* PASSWORD */}
             <div className="space-y-2">
               <label className="block text-xs font-semibold text-primary-dark uppercase tracking-wide">
@@ -123,7 +126,7 @@ const Loginpage = () => {
             {/* ERROR */}
             {error && (
               <div className="rounded-lg bg-red-50 border border-red-200 p-3">
-                <p className="text-xs text-red-600 font-medium text-center">
+                <p className="text-xs text-red-400 font-medium text-center">
                   {error}
                 </p>
               </div>
@@ -167,6 +170,7 @@ const Loginpage = () => {
         <p className="text-center text-xs text-slate-600 mt-6">
           By continuing, you agree to our Terms & Privacy Policy
         </p>
+    
       </div>
     </div>
   );
