@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Spinner from '../../components/common/Spinner.jsx'
 import progressservice from '../../services/progressservice.js'
 import { BrainCircuit, TrendingUp , BookOpen , FileText } from 'lucide-react'
+import toast from 'react-hot-toast'
+import Applayout from '../../components/layout/Applayout.jsx'
 const Dashboardpage = () => {
   const [dashboarddata , setdashboarddata] = useState(null)
   const [loading , setloading] = useState(true)
@@ -19,13 +21,13 @@ const Dashboardpage = () => {
         setloading(false)
       }
     }
-    fetchdashboarddata()  // function call kiya .. aur useffect m hi define krdia ... 
+    fetchdashboarddata();  // function call kiya .. aur useffect m hi define krdia ... 
   } , [])
   if(loading){
     return <Spinner/>
   }
 
-  if(!dashboarddata || !dashboarddata.overview){
+  if(!dashboarddata){
     return(
       <div className='min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center'>
         <div className='text-center'>
@@ -41,7 +43,7 @@ const Dashboardpage = () => {
   const stats = [
     {
       label: "Total documents",
-      value: dashboarddata.overview.totaldocuments,
+      value: dashboarddata.totaldocuments,
       icon:FileText ,
       gradient: "from-blue-400 to-cyan-500",
       shadowColor: "shadow-blue-500/25"
@@ -49,7 +51,7 @@ const Dashboardpage = () => {
 
     {
       label: "Total Flashcards",
-      value: dashboarddata.overview.totalflashcards,
+      value: dashboarddata.totalflashcards,
       icon:BookOpen ,
       gradient: "from-purple-400 to-pink-500",
       shadowColor: "shadow-purple-500/25"
@@ -57,7 +59,7 @@ const Dashboardpage = () => {
 
         {
       label: "Total Quizzes",
-      value: dashboarddata.overview.totalquizzes,
+      value: dashboarddata.totalquizzes,
       icon:BrainCircuit,
       gradient: "from-emerald-400 to-teal-500",
       shadowColor: "shadow-emerald-500/25"
@@ -67,7 +69,9 @@ const Dashboardpage = () => {
   ]
 
   return (
-    <div>Dashboardpage</div>
+    <div>
+      <Applayout/>
+    </div>
   )
 }
 
