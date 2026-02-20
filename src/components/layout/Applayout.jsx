@@ -9,7 +9,7 @@ const Applayout = ({children}) => {
   return (
     <div className='flex h-screen bg-neutral-50 text-neutral-900'>
       <Sidebar issidebaropen={issidebaropen} togglesidebar={togglesidebar}/>  {/* passed as variable to the sidebar component ...  */}
-<div className='flex-1 flex flex-col overflow-hidden'>
+<div className='flex-1 flex flex-col overflow-hidden'>  {/*flex-1 means bacha hua space mujhe de do , sidebar ke alava space div ka h jismai header+main h    */}
   <Header togglesidebar={togglesidebar}/>   {/* passed as variable to the header component ...  */}
   <main className='flex-1 overflow-x-hidden overflow-y-auto p-6'>
     {children}

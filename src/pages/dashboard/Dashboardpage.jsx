@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Spinner from '../../components/common/Spinner.jsx'
 import progressservice from '../../services/progressservice.js'
-import { BrainCircuit, TrendingUp , BookOpen , FileText } from 'lucide-react'
+import { BrainCircuit, TrendingUp , BookOpen , FileText , Clock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import Applayout from '../../components/layout/Applayout.jsx'
 const Dashboardpage = () => {
@@ -69,9 +69,76 @@ const Dashboardpage = () => {
   ]
 
   return (
+        <Applayout>
+<div> </div>
+<div>
+
+{/* Heading */}
+
+  <div>
+    <h1>Dashboard</h1>
+    <p>Track your learning progress and activity</p>
+    </div>  
+
+{/* Stats grid */}
+
+<div>
+  {
+    stats.map((stat,index)=>{
+
+      return(
+            <div key={index}>
+<div>
+  <span className=''>{stat.label}</span>
+  <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${stat.gradient} shadow-lg ${stats.shadowColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}></div>
+<stat.icon className='' strokeWidth={2}/>
+</div>
+<div>{stat.value}</div>
+      </div> 
+      )    
+    })
+  }      
+</div>  
+{/* Recent activity section  */}
+
+<div>
+  <div>
     <div>
-      <Applayout/>
+      <Clock className="" strokeWidth={2}/>
     </div>
+    <h3>Recent Activity</h3>
+  </div>
+
+{dashboarddata.recentactivity && (dashboarddata.recentactivity.documents.length > 0 || dashboarddata.recentactivity.quizzes.length>0 )
+
+ && 
+<div>
+  {[
+    ...(dashboarddata.recentactivity.documents || []).map(doc=>({
+      id:doc._id,
+      description: doc.title,
+      timestamp: doc.lastaccessed,
+      link:`/documents/${doc._id}`,
+      type:"document"
+    }))
+  ]}
+</div>
+
+
+}
+
+
+
+
+</div>
+
+
+
+  </div>
+
+        </Applayout>
+
+    
   )
 }
 
