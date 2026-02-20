@@ -1,11 +1,12 @@
 import React from 'react'
 import { NavLink , useNavigate } from 'react-router'
 import {useAuth} from "../../context/Authcontext"
-import { LayoutDashboard , FileText , User , LogOut , BrainCircuit , BookOpen, Layout , X } from 'lucide-react'
-const Sidebar = ({ issidebaropen , togglesidebar}) => {
+import { LayoutDashboard , FileText , User , LogOut , BrainCircuit , BookOpen , X } from 'lucide-react'
+const Sidebar = ({ issidebaropen , togglesidebar}) => { {/* taken as parameter  ...  */}
 
   const {logout } = useAuth()
   const navigate = useNavigate()
+
   const handlelogout = ()=>{
     logout();
     navigate("/login")
@@ -21,12 +22,12 @@ const Sidebar = ({ issidebaropen , togglesidebar}) => {
     <>
     
        <div className={`fixed inset-0 bg-black/30 z-40 md:hidden transition-opacity duration-2000 ${issidebaropen ? "opacity-100": "opacity-0 pointer-events-none"}`
-  }  onclick={togglesidebar} aria-hidden="true" >
+  }  onClick={togglesidebar} aria-hidden="true" >
     </div>
 
     <aside className={`fixed top-0 left-0 h-full w-64 bg-white/90 backdrop-blur-lg border-r border-slate-200/60 z-50 md:relative md:w-64 md:shrink-0 md:flex md:flex-col md:translate-x-0 transition-transform duration-300 ease-in-out
       
-      ${issidebaropen}? "translate-x-0" :"-translate-x-full"
+      ${issidebaropen? "translate-x-0" :"-translate-x-full"}
       
       `}>
     
@@ -40,7 +41,7 @@ const Sidebar = ({ issidebaropen , togglesidebar}) => {
   </div>
   <button className='md:hidden text-primary-dark hover:text-primary' onClick={togglesidebar} >
     <X size={24}/>
-  </button>
+  </button>  
 </div>
 
 <nav className='flex-1 py-6 px-3 space-y-1.5'>
@@ -69,9 +70,12 @@ const Sidebar = ({ issidebaropen , togglesidebar}) => {
 </nav>
 
  {/* logout section*/}
-<div >
-  <button onClick={handlelogout} className=''></button>
-  <LogOut size={18} strokeWidth={2.5}/>
+<div className='px-3 py-4 border-t border-slate-200/60' >
+  <button onClick={handlelogout} className='group flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200'>
+    
+    <LogOut className='transition-transform duration-200 group-hover:scale-110' size={18} strokeWidth={2.5}/>
+    Logout</button>
+  
 </div>
 </aside>
     </>
