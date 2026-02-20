@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink , useNavigate } from 'react-router'
 import {useAuth} from "../../context/Authcontext"
 import { LayoutDashboard , FileText , User , LogOut , BrainCircuit , BookOpen , X } from 'lucide-react'
-const Sidebar = ({ issidebaropen , togglesidebar}) => { {/* taken as parameter  ...  */}
+const Sidebar = ({ issidebaropen , togglesidebar}) => { {/* taken as paramter .need to start from this  ...  */}
 
   const {logout } = useAuth()
   const navigate = useNavigate()
