@@ -145,8 +145,7 @@ const Dashboardpage = () => {
                       type:"quiz"
                     }))
                   ]
-                  .sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp))
-                  .map((activity,index)=>(
+                  .sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp)).map((activity,index)=>(
 
                     <div 
                       key={activity.id || index} 

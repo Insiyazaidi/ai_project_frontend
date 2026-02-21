@@ -9,7 +9,7 @@ const getdocuments = async()=>{
     }
 }
 
-const uploaddocument = async(formdata)=>{ 
+const uploaddocument = async(formdata)=>{   // yha pr form data aaiga ... 
     try {
      const response = await axiosinstance.post(API_PATHS.DOCUMENTS.UPLOAD, formdata , { headers:{"Content-Type":"multipart/form-data"} })
      return response.data   
