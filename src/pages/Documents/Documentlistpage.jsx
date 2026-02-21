@@ -98,26 +98,29 @@ const rendercontent = ()=>{
       </div>
     )
   }
-  if(documents.length>0){
+  if(documents.length===0){
     return(
       <div className='flex items-center justify-center min-h-400px'>
         <div className='text-center max-w-md'>
           <div className='inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br from-slate-100 to-slate-200 shadow-lg shadow-slate-200/50 mb-6'>
             <FileText className='w-10 text-slate-400' strokeWidth={1.5}/>
           </div>
-          <h3 className='text-xl font-medium text-slate-900 tracking-tight mb-2'>No docuemnt</h3>
+          <h3 className='text-xl font-medium text-slate-900 tracking-tight mb-2'>No document</h3>
           <p className='text-sm text-slate-500 mb-6'>Get started by uploading your first PDF document to begin learning </p>
-          <button onClick={()=>setisuploadmodelopen(true)}> <Plus className='inline-flex items-center gap-3 px-6 py-3 bg-linear-to-r from-primary-dark to-primary hover:from-secondary hover:to-soft text-white text-sm font-semibold rounded-xl transition-all duration-200  ' strokeWidth={2.5}/>Upload document</button>
+          <button onClick={()=>setisuploadmodelopen(true) } className='inline-flex items-center gap-3 px-6 py-3 bg-linear-to-r from-primary-dark to-primary  text-white text-sm font-semibold rounded-xl transition-all duration-200  '> <Plus strokeWidth={2.5}/>Upload document</button>
         </div>
       </div>
     )
   }
 
 return(
-  <div>
-    {documents?.map((doc)=>{
+  <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
+    {documents?.map((doc)=>
+      (
  <Documentcard key={doc._id} document={doc} oneDelete={handledeletereq}/>
-    })}
+      )
+
+    )}
   </div>
 )
 
@@ -145,6 +148,28 @@ return(
 </div>
 
 {rendercontent()}
+</div>
+
+<div>
+  <div>
+    <button onClick={()=>setisuploadmodelopen(false)} className=''><X className='' strokeWidth={2}/></button>
+   
+    {/* Modal header */}
+    <div>
+      <h2 className=''>Upload New Document</h2>
+      <p className=''>Add a PDF document to your library</p>
+    </div>
+
+     {/* form */}
+<form onSubmit={handleupload} className=''>
+ {/* title input */}
+ <div>
+  <label className=''>Document Title</label>
+  <input type=''></input>
+ </div>
+</form>
+
+  </div>
 </div>
 
 </div>
