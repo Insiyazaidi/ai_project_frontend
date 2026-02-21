@@ -4,6 +4,8 @@ import {Plus , Upload , Trash2 , FileText , X} from "lucide-react"
 import toast from 'react-hot-toast'
 import documentservice from '../../services/documentservice'
 import Spinner from '../../components/common/Spinner'
+import Button from '../../components/common/Button'
+import Documentcard from '../../components/document/Documentcard'
 const Documentlistpage = () => {
   const [documents , setdocuments] = useState([])
   const [loading , setloading] = useState(false)
@@ -89,15 +91,63 @@ finally{
 }
 
 const rendercontent = ()=>{
-  return 
-  <div>renderContent</div>
+  if(loading){
+    return(
+      <div className='flex items-center justify-center min-h-400px'>
+        <Spinner/>
+      </div>
+    )
+  }
+  if(documents.length>0){
+    return(
+      <div className='flex items-center justify-center min-h-400px'>
+        <div className='text-center max-w-md'>
+          <div className='inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br from-slate-100 to-slate-200 shadow-lg shadow-slate-200/50 mb-6'>
+            <FileText className='w-10 text-slate-400' strokeWidth={1.5}/>
+          </div>
+          <h3 className='text-xl font-medium text-slate-900 tracking-tight mb-2'>No docuemnt</h3>
+          <p className='text-sm text-slate-500 mb-6'>Get started by uploading your first PDF document to begin learning </p>
+          <button onClick={()=>setisuploadmodelopen(true)}> <Plus className='inline-flex items-center gap-3 px-6 py-3 bg-linear-to-r from-primary-dark to-primary hover:from-secondary hover:to-soft text-white text-sm font-semibold rounded-xl transition-all duration-200  ' strokeWidth={2.5}/>Upload document</button>
+        </div>
+      </div>
+    )
+  }
+
+return(
+  <div>
+    {documents?.map((doc)=>{
+ <Documentcard key={doc._id} document={doc} oneDelete={handledeletereq}/>
+    })}
+  </div>
+)
+
 }
 
 
 
   return (
    <Applayout>
+<div className='min-h-screen'>
+  {/* subtle background page  */}
+  <div className='absolute inset-0 bg-soft/90 bg-size-[16px_16px] opacity-10 pointer-events-none'></div>
 
+
+<div className='relative max-w-7xl mx-auto'>
+{/* header  */}
+<div className='flex items-center justify-between mb-10'>
+  <div >
+    <h1 className='text-2xl font-medium text-slate-900 tracking-tight mb-2'>My Documents</h1>
+    <p className='text-slate-500 text-sm'>Manage and organize your learning material</p>
+  </div>
+  {documents.length>0 && (
+    <Button onClick={()=>setisuploadmodelopen(true)}><Plus className='w-4 h-4' strokeWidth={2.5}/>Upload Document</Button>
+  )}
+</div>
+
+{rendercontent()}
+</div>
+
+</div>
 
 
    </Applayout>
