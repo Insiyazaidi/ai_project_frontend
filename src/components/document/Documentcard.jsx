@@ -82,11 +82,4 @@ const handledelete =(e)=>{
     </div>
   
 }
-
-
-
-
-
-
-
 export default Documentcard
