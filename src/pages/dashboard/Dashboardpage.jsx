@@ -4,7 +4,7 @@ import progressservice from '../../services/progressservice.js'
 import { BrainCircuit, TrendingUp , BookOpen , FileText , Clock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import Applayout from '../../components/layout/Applayout.jsx'
-
+import { Link } from 'react-router'
 const Dashboardpage = () => {
   const [dashboarddata , setdashboarddata] = useState(null)
   const [loading , setloading] = useState(true)
@@ -176,13 +176,13 @@ const Dashboardpage = () => {
                       </div>
 
                       {activity.link && (
-                        <a 
-                          href={activity.link} 
+                        <Link 
+                          to={activity.link} 
                           className='ml-4 px-4 py-2 text-sm font-semibold text-emerald-800 hover:text-white hover:bg-primary-dark rounded-lg transition-all duration-200 whitespace-nowrap'
                         
                         >
                           View 
-                        </a>
+                        </Link>
                       )}
 
                     </div>
