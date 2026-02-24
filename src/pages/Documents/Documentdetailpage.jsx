@@ -5,6 +5,9 @@ import documentservice from '../../services/documentservice'
 import Spinner from '../../components/common/Spinner'
 import toast from 'react-hot-toast'
 import {ArrowLeft , ExternalLink} from "lucide-react"
+import Pageheader from "../../components/common/Pageheader"
+import Tabs from "../../components/common/Tabs"
+import Applayout from '../../components/layout/Applayout'
 const Documentdetailpage = () => {
   const {id} =useParams()
   const [document , setdocument] = useState(null)
@@ -94,9 +97,18 @@ if(!document){
   return <div className='text-center p-8'>Document not found</div>
 }
 
-
   return (
-    <div>Documentdetailpage</div>
+
+    <Applayout>
+ <div>
+<div className='mb-4'>
+  <Link to="/documents" className='inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-neutral-900 transition-colors'><ArrowLeft size={16}/>Back to documents</Link>
+</div>
+<Pageheader title={document.data.title}/>
+<Tabs tabs={tabs} activetab={activetab} setactivetab={setactivetab}/>
+    </div>
+    </Applayout>
+   
   )
 }
 
