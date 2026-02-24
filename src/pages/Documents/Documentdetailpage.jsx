@@ -78,6 +78,7 @@ const renderflashcardstab=()=>{
 const renderquizzestab =()=>{
 
 }
+
 const tabs =[
   {name:"Content" , label:"Content" , content:rendercontent()},
  {name:"Chat" , label:"Chat" , content:renderchat()},
