@@ -8,6 +8,7 @@ import {ArrowLeft , ExternalLink} from "lucide-react"
 import Pageheader from "../../components/common/Pageheader"
 import Tabs from "../../components/common/Tabs"
 import Applayout from '../../components/layout/Applayout'
+import Chatinterface from '../../components/chat/Chatinterface'
 const Documentdetailpage = () => {
   const {id} =useParams()
   const [document , setdocument] = useState(null)
@@ -67,7 +68,7 @@ const rendercontent =()=>{
 
 
 const renderchat =()=>{
-  return "render chat"
+  return <Chatinterface/>
 }
 
 const renderaiactions=()=>{
