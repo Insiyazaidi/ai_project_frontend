@@ -40,7 +40,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-    scrolltobottom()
+    scrolltobottom();
 
 } , [history])
 
@@ -48,10 +48,10 @@ const handlesendmessage = async(e)=>{
     e.preventDefault()
     if(!message.trim()) return;
     const usermessage = {role:"user" , content:message , timestamp:new Date()}
+    console.log(usermessage)
     sethistory(prev=>[...prev , usermessage])
     setmessage("")
     setloading(true)
-
     try {
         const response = await aiservice.chat(documentid , usermessage.content)
         const assistantmessage = {
@@ -60,8 +60,13 @@ const handlesendmessage = async(e)=>{
             timestamp:new Date(),
             relevantchunks:response.data.relevantchunks
 }
+
 sethistory(prev=>[...prev, assistantmessage])
-    } catch (error) {
+
+    }
+    
+    
+    catch (error) {
        console.log(" chat error:", error) 
        const errormessage ={
         role:"assistant",
@@ -81,6 +86,7 @@ const rendermessage =(msg , index)=>{
             {!isuser && (
                 <div className="w-9 h-9 rounded-xl bg-linear-to-br  from-primary-dark to-primary shadow-lg shadow-soft flex items-center justify-center shrink-0"><Sparkles className="w-4 h-4 text-white" strokeWidth={2}/></div>
             )}
+
             <div className={`max-w-lg p-4 rounded-xl shadow-sm ${isuser ? "bg-linear-to-br from-primary-dark to-primary text-white rounded-br-md" :"bg-white border border-slate-200/60 text-slate-800 rounded-bl-md"}`}>
             {isuser ? <p className="text-sm leading-relaxed">{msg.content}</p> :(<div className="prose prose-sm max-w-none prose-slate"><MarkdownRenderer content={msg.content}/></div>)}
             </div>
@@ -90,6 +96,7 @@ const rendermessage =(msg , index)=>{
         </div>
     )
 }
+
 if(initialloading){
     return(
         <div className="flex flex-col h-[70vh] bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-2xl items-center justify-center shadow-xl shadow-slate-200/50">
@@ -106,7 +113,7 @@ if(initialloading){
 
    {/* Message area */}
 
-   <div className="flex flex-col w-full p-6 overflow-y-auto bg-linear-to-br from-slate-50/50 via-white/50 to-slate-50/50">{history.length===0 ? (
+   <div className="flex-1 w-full p-6 overflow-y-auto bg-linear-to-br from-slate-50/50 via-white/50 to-slate-50/50">{history.length===0 ? (
     <div className="flex  flex-col items-center justify-center h-full text-center">
         <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-primary-dark to-primary flex items-center justify-center mb-4 shadow-lg shadow-soft"><MessageSquare className="w-8 h-8 text-white"/></div>
         <h3 className="text-base font-semibold text-slate-900 mb-2">Start a conversation</h3>
@@ -115,31 +122,25 @@ if(initialloading){
    ): (
 
 
-<div>
-
-     {history.map((msg, index) => rendermessage(msg, index))}
-    {loading && (
-        <div className="flex items-center gap-3 my-4">
-            <div className="w-9 h-9 rounded-xl bg-linear-to-br from-primary-dark to-primary shadow-lg shadow-soft flex items-center justify-center shrink-0 "><Sparkles className="w-4 h-4 text-white" strokeWidth={2}/></div>
-
-<div className="flex items-center gap-2 px-4 py-3 rounded-2xl rounded-bl-md bg-white border border-slate-200/60">
-    <div className="flex gap-1">
-        <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"0ms"}}></span>
-         <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"150ms"}}></span>
-          <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"300ms"}}></span>
+history.map(rendermessage)
+ )}
+  <div ref={messageendref}></div> 
+  {loading && (
+    <div className="flex items-center gap-3 my-4">
+        <div className="w-9 h-9 rounded-xl bg-linear-to-br from-primary-dark to-primary flex items-center justify-center shrink-0">
+            <Sparkles  className="w-4 h-4 text-white"strokeWidth={2}/>
+        </div>
+        <div className="flex items-center gap-2 px-4  py-3 rounded-2xl rounded-b-md bg-white border border-slate-200/60">
+            <div className="flexx gap-1">
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"0ms"}}></span>
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"150ms"}}></span>
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay:"300ms"}}></span>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-
-    )}
-</div>
-
-
-   )
-   
-   }
-   
+  )}
    </div>
+   
 
   {/* Input area */}
   <div className="p-5 border-t border-slate-200/60 bg-white/80 mx-auto w-full max-w-3xl">
