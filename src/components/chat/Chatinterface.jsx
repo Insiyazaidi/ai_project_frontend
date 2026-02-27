@@ -48,7 +48,6 @@ const handlesendmessage = async(e)=>{
     e.preventDefault()
     if(!message.trim()) return;
     const usermessage = {role:"user" , content:message , timestamp:new Date()}
-    console.log(usermessage)
     sethistory(prev=>[...prev , usermessage])
     setmessage("")
     setloading(true)
@@ -90,9 +89,12 @@ const rendermessage =(msg , index)=>{
             <div className={`max-w-lg p-4 rounded-xl shadow-sm ${isuser ? "bg-linear-to-br from-primary-dark to-primary text-white rounded-br-md" :"bg-white border border-slate-200/60 text-slate-800 rounded-bl-md"}`}>
             {isuser ? <p className="text-sm leading-relaxed">{msg.content}</p> :(<div className="prose prose-sm max-w-none prose-slate"><MarkdownRenderer content={msg.content}/></div>)}
             </div>
+
 {isuser && (
     <div className="w-9 h-9 rounded-xl bg-linear-to-br from-slate-200 to-slate-300 flex items-center justify-center text-slate-700 font-semibold text-sm shrink-0 shadow-sm">{user?.username?.charAt(0).toUpperCase() || "U"}</div>
 )}
+
+
         </div>
     )
 }
@@ -123,8 +125,12 @@ if(initialloading){
 
 
 history.map(rendermessage)
+
  )}
   <div ref={messageendref}></div> 
+
+
+{/* for 3 dots while loading ... */}  
   {loading && (
     <div className="flex items-center gap-3 my-4">
         <div className="w-9 h-9 rounded-xl bg-linear-to-br from-primary-dark to-primary flex items-center justify-center shrink-0">

@@ -6,6 +6,8 @@ const Tabs = ({ tabs, activetab, setactivetab }) => {
 
       <div className="relative border-b-2 border-slate-100">
         <nav className="flex gap-2">
+
+ {/* Display name  */}
           {tabs.map((tab) => (
             <button
               key={tab.name}
@@ -18,15 +20,22 @@ const Tabs = ({ tabs, activetab, setactivetab }) => {
             >
               <span className="relative z-10">{tab.label}</span>
 
+
+ {/* Bottom Line Indicator */}
+
               {activetab === tab.name && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-primary-dark to-primary rounded-full shadow-lg shadow-soft"></div>
               )}
+
+               {/* background gradient */}
 
               {activetab === tab.name && (
                 <div className="absolute inset-0 bg-linear-to-r from-primary-dark to-transparent rounded-t-xl -z-10" />
               )}
             </button>
           ))}
+
+
         </nav>
       </div>
 

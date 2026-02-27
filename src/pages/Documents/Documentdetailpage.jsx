@@ -36,11 +36,14 @@ const getpdfurl = ()=>{
   if(!document?.data?.filepath) return null;
   const fetchfilepath = document.data.filepath
   if(fetchfilepath.startsWith("http://") || fetchfilepath.startsWith("https://")){
-    return fetchfilepath
+    return fetchfilepath  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
   }
   const baseurl = process.env.REACT_APP_API_URL || "http://localhost:8000"
   return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`
 }
+
+
+// RENDER CONTENT VLA FUNCTION ISSE FILE M DEFINE KRDIA H 
 
 const rendercontent =()=>{
   if(loading){
@@ -49,6 +52,7 @@ const rendercontent =()=>{
   if(!document || !document.data || !document.data.filepath){
     return <div className='text-center p-8'>PDF not available</div>
   }
+
   const pdfurl = getpdfurl();
   return(
     <div className='bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm'>
@@ -108,6 +112,7 @@ if(!document){
 <Pageheader title={document.data.title}/>
 <Tabs tabs={tabs} activetab={activetab} setactivetab={setactivetab}/>
     </div>
+
     </Applayout>
    
   )
