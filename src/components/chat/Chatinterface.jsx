@@ -127,7 +127,7 @@ if(initialloading){
 history.map(rendermessage)
 
  )}
-  <div ref={messageendref}></div> 
+  <div ref={messageendref}></div>   {/* for scrolling from top to bottom  */} 
 
 
 {/* for 3 dots while loading ... */}  
