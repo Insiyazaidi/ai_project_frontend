@@ -78,7 +78,7 @@ sethistory(prev=>[...prev, assistantmessage])
     }
 }
 
-const rendermessage =(msg , index)=>{
+const rendermessage =(msg , index)=>{      {/* rendering message */}
     const isuser = msg.role==="user" 
     return(
         <div key={index} className={`flex items-start gap-3 my-4 ${isuser ? "justify-end" :"justify-start"}`}>
