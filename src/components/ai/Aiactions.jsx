@@ -79,15 +79,37 @@ const handleexplainconcept = async(e)=>{
 </div>
    <p className='text-sm text-slate-600 leading-relaxed'>Get a concise sumary of the entire document</p>       
         </div>
-        <button onClick={handlegeneratesummary} disabled={loadingaction ==="summary"} className='shrink-0 h-10 px-5 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:primary text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg-'>{loadingaction === "summary" ? (
-<span className=''>
-    <div className=''/>
+        <button onClick={handlegeneratesummary} disabled={loadingaction ==="summary"} className='shrink-0 h-10 px-5 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:primary text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'>{loadingaction === "summary" ? (
+<span className='flex items-center gap-2'>
+    <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'/>
     Loading...
 </span>
 
         ): "Summarize"}</button>
     </div>
 </div>
+
+ {/* Explanation */}
+<div className='group p-5 bg-linearto-br from-slate-50/50 to-white rounded-xl border border-slate-200/60 hover:border-slate-300/60 hover:shadow-md transition-all duration-200 '>
+<form onSubmit={handleexplainconcept}>
+    <div className='flex items-center gap-2 mb-3'>
+        <div className='w-8 h-8 rounded-lg bg-linear-to-br from-amber-100 to-orange-100 flex items-center justify-center'>
+<Lightbulb className='w-4 h-4 text-amber-600' strokeWidth={2}/>
+        </div>
+<h4 className='font-semibold text-slate-900 '>Explain a concept</h4>
+    </div>
+    <p className='text-sm text-slate-600 leading-relaxed mb-4'>Enter a topic or concept from the document to get a detailed explanation</p>
+    <div className='flex items-center gap-3'>
+        <input type='text' value={concept} onChange={(e)=>setconcept(e.target.value)} placeholder='eg- React Hooks' className='flex-1 h-11 px-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-primary-dark focus:bg-white focus:shadow-lg  focus:shadow-purple-500'disabled={loadingaction ==="explain"}></input>
+   <button type='submit'disabled={loadingaction === "explain" || !concept.trim()} className=''>{loadingaction === "explain" ? (<span className=''
+    ><div/></span>):"Explain"}</button>
+   
+   
+    </div>
+</form>
+
+</div>
+
 </div>
    </div>
    
