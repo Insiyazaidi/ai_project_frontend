@@ -9,6 +9,7 @@ import Pageheader from "../../components/common/Pageheader"
 import Tabs from "../../components/common/Tabs"
 import Applayout from '../../components/layout/Applayout'
 import Chatinterface from '../../components/chat/Chatinterface'
+import Aiactions from '../../components/ai/Aiactions'
 const Documentdetailpage = () => {
   const {id} =useParams()
   const [document , setdocument] = useState(null)
@@ -76,7 +77,7 @@ const renderchat =()=>{
 }
 
 const renderaiactions=()=>{
-  return "renderaiactions"
+  return <Aiactions/>
 }
 
 const renderflashcardstab=()=>{
