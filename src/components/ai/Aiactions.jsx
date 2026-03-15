@@ -93,15 +93,15 @@ const handleexplainconcept = async(e)=>{
 <div className='group p-5 bg-linearto-br from-slate-50/50 to-white rounded-xl border border-slate-200/60 hover:border-slate-300/60 hover:shadow-md transition-all duration-200 '>
 <form onSubmit={handleexplainconcept}>
     <div className='flex items-center gap-2 mb-3'>
-        <div className='w-8 h-8 rounded-lg bg-linear-to-br from-amber-100 to-orange-100 flex items-center justify-center'>
-<Lightbulb className='w-4 h-4 text-amber-600' strokeWidth={2}/>
+        <div className='w-8 h-8 rounded-lg bg-linear-to-br from-blue-300 to-cyan-100 flex items-center justify-center'>
+<Lightbulb className='w-4 h-4 text-primary-dark' strokeWidth={2}/>
         </div>
 <h4 className='font-semibold text-slate-900 '>Explain a concept</h4>
     </div>
     <p className='text-sm text-slate-600 leading-relaxed mb-4'>Enter a topic or concept from the document to get a detailed explanation</p>
     <div className='flex items-center gap-3'>
-        <input type='text' value={concept} onChange={(e)=>setconcept(e.target.value)} placeholder='eg- React Hooks' className='flex-1 h-11 px-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-primary-dark focus:bg-white focus:shadow-lg  focus:shadow-purple-500'disabled={loadingaction ==="explain"}></input>
-   <button type='submit'disabled={loadingaction === "explain" || !concept.trim()} className='shrink-0 h-11 px-5 bg-linear-to-r   from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'>{loadingaction === "explain" ? (<span className='flex items-center gap-2'
+        <input type='text' value={concept} onChange={(e)=>setconcept(e.target.value)} placeholder='eg- React Hooks' className='flex-1 h-11 px-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-primary-dark focus:bg-white 'disabled={loadingaction ==="explain"}></input>
+   <button type='submit'disabled={loadingaction === "explain" || !concept.trim()} className='shrink-0 h-11 px-5 bg-linear-to-r   from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-secondary disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'>{loadingaction === "explain" ? (<span className='flex items-center gap-2'
     ><div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'/></span>):"Explain"}</button>
    
    
@@ -113,7 +113,17 @@ const handleexplainconcept = async(e)=>{
 </div>
    </div>
    
-   
+ {/*Result modal  */}
+
+ <Modal isOpen ={ismodelopen} onClose={()=>setismodelopen(false)} title={modaltitle}>
+
+<div className='max-h-[60vh] overflow-y-auto prose prose-sm max-w-none prose-slate'>
+<MarkdownRenderer content={modalcontent}/>
+
+</div>
+ </Modal>
+
+
    </>
   )
 }
