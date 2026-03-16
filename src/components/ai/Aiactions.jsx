@@ -4,6 +4,7 @@ import {Sparkles , BookOpen , Lightbulb} from "lucide-react"
 import aiservice from '../../services/aiservice'
 import toast from 'react-hot-toast'
 import MarkdownRenderer from '../common/MarkdownRenderer'
+import Modal from '../common/Modal'
 const Aiactions = () => {
     const {id : documentid} = useParams()
     const [loadingaction , setloadingaction] = useState(null)
@@ -15,9 +16,10 @@ const [concept, setconcept] = useState("")
 const handlegeneratesummary = async()=>{
     setloadingaction("summary")
     try {
-        const {summary} = await aiservice.generatesummary(documentid)
+       const res = await aiservice.generatesummary(documentid)
+        console.log("SERVICE RESULT:", res)
         setmodeltitle("Generated Summary")
-        setmodelcontent(summary)
+        setmodelcontent(res.gotsummary)
         setismodelopen(true)
     } catch (error) {
       toast.error("Failed to generate summary")
@@ -34,9 +36,10 @@ const handleexplainconcept = async(e)=>{
         toast.error("Please enter a concept to explain")
         return
     }
-    setloadingaction("Explain")
+    setloadingaction("explain")
     try {
        const {explanation} = await aiservice.explainconcept(documentid , concept)
+       console.log(explanation)
        setmodeltitle(`Explanation of ${concept}`)
        setmodelcontent(explanation) 
        setismodelopen(true)
@@ -73,7 +76,7 @@ const handleexplainconcept = async(e)=>{
         <div className='flex-1'>
 <div className='flex items-center gap-2 mb-2'>
       <div className='w-8 h-8 rounded-lg bg-linear-to-br from-blue-100 to-cyan-100 flex items-center justify-center'>
-                <BookOpen className='w-4 h-4' strokeWidth={2}/>
+                <BookOpen className='w-4 h-4  text-primary-dark' strokeWidth={2}/>
             </div>
             <h4 className='font-semibold text-slate-900'>Generate Summary</h4>
 </div>
@@ -93,7 +96,7 @@ const handleexplainconcept = async(e)=>{
 <div className='group p-5 bg-linearto-br from-slate-50/50 to-white rounded-xl border border-slate-200/60 hover:border-slate-300/60 hover:shadow-md transition-all duration-200 '>
 <form onSubmit={handleexplainconcept}>
     <div className='flex items-center gap-2 mb-3'>
-        <div className='w-8 h-8 rounded-lg bg-linear-to-br from-blue-300 to-cyan-100 flex items-center justify-center'>
+        <div className='w-8 h-8 rounded-lg bg-linear-to-br from-blue-100 to-cyan-100 flex items-center justify-center'>
 <Lightbulb className='w-4 h-4 text-primary-dark' strokeWidth={2}/>
         </div>
 <h4 className='font-semibold text-slate-900 '>Explain a concept</h4>

@@ -13,13 +13,14 @@ const generatequiz = async(documentid , options)=>{
      const response = await axiosinstance.post(API_PATHS.AI.GENERATE_QUIZ, {documentid, ...options})
      return response.data   
     } catch (error) {
-       throw error.response?.data|| {message:"Failed to generate quiz"} 
+       throw error.response?.data|| {message:"Failed to generate quiz"}     
     }
 }
 const generatesummary = async(documentid)=>{
     try {
-     const response = await axiosinstance.post(API_PATHS.AI.GENERATE_FLASHCARDS, {documentid})
-     return response.data?.data   
+     const response = await axiosinstance.post(API_PATHS.AI.GENERATE_SUMMARY, {documentid})
+     console.log(response.data)
+     return response.data  
     } catch (error) {
        throw error.response?.data|| {message:"Failed to generate summary"} 
     }
