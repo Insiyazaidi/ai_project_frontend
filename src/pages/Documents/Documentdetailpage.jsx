@@ -10,6 +10,7 @@ import Tabs from "../../components/common/Tabs"
 import Applayout from '../../components/layout/Applayout'
 import Chatinterface from '../../components/chat/Chatinterface'
 import Aiactions from '../../components/ai/Aiactions'
+import Flashcardmanager from '../../components/flashcards/Flashcardmanager'
 const Documentdetailpage = () => {
   const {id} =useParams()
   const [document , setdocument] = useState(null)
@@ -81,7 +82,7 @@ const renderaiactions=()=>{
 }
 
 const renderflashcardstab=()=>{
-  return "renderflashcardstab"
+  return <Flashcardmanager documentid = {id}/>
 }
 
 const renderquizzestab =()=>{
