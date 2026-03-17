@@ -116,14 +116,19 @@ const handleexplainconcept = async(e)=>{
 </div>
    </div>
    
- {/*Result modal  */}
+ {/*Result modal - for displaying the result on  ui   */}
 
  <Modal isOpen ={ismodelopen} onClose={()=>setismodelopen(false)} title={modaltitle}>
+  
+
+    
+ {/* Jo bhi <Modal> .... </Modal> ke beech likha hota hai  Woh automatically children prop ban jaata hai  */}
 
 <div className='max-h-[60vh] overflow-y-auto prose prose-sm max-w-none prose-slate'>
 <MarkdownRenderer content={modalcontent}/>
-
 </div>
+
+
  </Modal>
 
 
