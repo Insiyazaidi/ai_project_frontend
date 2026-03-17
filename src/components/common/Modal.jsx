@@ -29,7 +29,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           </h3>
         </div>
 
-        {children}
+        {children}   {/*  Markdown component  se jo  content return vo yha display hoga   */}
 
       </div>
     </div>
