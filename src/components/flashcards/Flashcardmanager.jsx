@@ -42,7 +42,7 @@ useEffect(()=>{
 const handlegenerateflashcards = async()=>{
     setgenerating(true)
     try {
-        await aiservice.generateflashcards({documentid})
+        await aiservice.generateflashcards(documentid)
         toast.success("flashcards generated successfully")
         fetchflashcardsets()
 
@@ -109,20 +109,93 @@ if(loading){
     )
 }
 
-return(
+if(flashcardsets.length===0){
+    return(
     <div className='flex flex-col items-center justify-center py-16 px-6 '>
-        <div className='inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br from-primary-dark to-primary'>
+        <div className='inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-soft'>
             <Brain className='w-8 h-8 text-primary-dark' strokeWidth={2}/>
         </div>
-        <h3>No flashcards Yet</h3>
-        <p>Generate flashcards from your document to start learning and reinforce your knowledge</p>
-        <button onClick={handlegenerateflashcards} disabled={generating} className=''>{generating ? (<>
+        <h3 className='text-xl font-semibold text-slate-900 mb-2'>No flashcards Yet</h3>
+        <p className='text-sm text-slate-500 mb-8 text-center max-w-sm'>Generate flashcards from your document to start learning and reinforce your knowledge</p>
+        <button onClick={handlegenerateflashcards} disabled={generating} className='group inline-flex items-center gap-2 px-6 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary text-white font-semibold text-sm rounded-xl transition-all duration-200  active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100'>{generating ? (<>
         
-        <div className=''>Generating</div>
+        <div className='w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin'>Generating</div>
         
-        </>):<><Sparkles className='' strokeWidth={2}/>Generate Flashcards</>}</button>
+        </>):<><Sparkles className='w-4 h-4' strokeWidth={2}/>Generate Flashcards</>}</button>
     </div>
 )
+}
+
+return (
+    <div className='space-y-6'>
+        {/* Header with Generate button*/} 
+        <div className='flex items-center justify-between'>
+            <div>
+                <h3 className='text-lg font-semibold text-slate-900 '>Your flashcard Sets</h3>
+                <p className='text-sm text-slate-500 mt-1'>{flashcardsets.length}{" "}{flashcardsets.length===1 ? "set" : "sets"} available</p>
+            </div>
+
+
+
+          <button 
+  onClick={handlegenerateflashcards} 
+  disabled={generating} 
+  className='group inline-flex items-center gap-2 px-5 h-11 bg-linear-to-br  from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100'
+>
+  {generating ? (
+    <>
+      <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
+      <span>Generating...</span>
+    </>
+  ) : (
+    <>
+      <Plus className='w-4 h-4' strokeWidth={2.5}/>
+      Generate New Set
+    </>
+  )}
+</button>
+
+
+
+        </div>
+   {/* Flashcard sets grid*/} 
+<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+    {flashcardsets.map((set)=>(
+        <div key={set._id} onClick={()=>handleselectset(set)} className='group relative bg-white/80 backdrop-blur-xl border-2 border-slate-200 hover:border-secondary rounded-2xl p-6 cursor-pointer  transition-all duration-200  '>
+ {/* Delete button*/} 
+<button onClick={(e)=>handledeleterequest(e,set)} className='absolute top-4 right-4 p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-all duration-200 opacity-0 group-hover:opacity-100'><Trash2 className='w-4 h-4' strokeWidth={2}/></button>
+ {/* Set content*/}
+
+ <div className='space-y-4'>
+    <div className='inline-flex items-center justify-center w-12 h-12  rounded-xl bg-soft'>
+        <Brain className='w-6 h-6 text-primary-dark' strokeWidth={2}/>
+    </div>
+    </div> 
+
+<div className='py-2'>
+<h4 className='text-base font-semibold text-slate-900  '>Flashcard Set</h4>
+<p className='text-xs font-medium text-slate-500 uppercase tracking-wide'>Created {moment(set.createdat ).format("MMM D, YYYY")}</p>
+</div>
+
+<div className='flex items-center gap-2 pt-2 border-t border-slate-100'>
+    <div className='px-3 py-1.5 bg-soft border border-primary rounded-lg '>
+        <span className='text-sm  font-semibold text-primary-dark'>{set.cards.length}{" "}{set.cards.length===1 ? "card" :"cards"}</span>
+    </div>
+</div>
+
+
+        </div>
+
+
+
+    ))}
+</div>
+
+    </div>
+)
+
+
+
 }
 
   return (
