@@ -33,6 +33,12 @@ setflashcardssets(response.data)
     }
 }
 
+useEffect(()=>{
+    if(documentid){
+        fetchflashcardsets()
+    }
+} , [documentid])
+
 const handlegenerateflashcards = async()=>{
     setgenerating(true)
     try {
@@ -97,11 +103,32 @@ const renderflashcardviewer= ()=>{
 }
 
 const rendersetlist = ()=>{
-    return "rendersetlist"
+if(loading){
+    return(
+        <div className='flex items-center justify-center py-20'><Spinner/></div>
+    )
+}
+
+return(
+    <div className='flex flex-col items-center justify-center py-16 px-6 '>
+        <div className='inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br from-primary-dark to-primary'>
+            <Brain className='w-8 h-8 text-primary-dark' strokeWidth={2}/>
+        </div>
+        <h3>No flashcards Yet</h3>
+        <p>Generate flashcards from your document to start learning and reinforce your knowledge</p>
+        <button onClick={handlegenerateflashcards} disabled={generating} className=''>{generating ? (<>
+        
+        <div className=''>Generating</div>
+        
+        </>):<><Sparkles className='' strokeWidth={2}/>Generate Flashcards</>}</button>
+    </div>
+)
 }
 
   return (
-    <div>Flashcardmanager</div>
+    <div className='bg-white/80 backdrop-blur-xl border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/80 p-8'>
+ {selectedset ? renderflashcardviewer():rendersetlist()}
+    </div>
   )
 }
 
