@@ -33,7 +33,7 @@ onClick={handleflip}>
       ? "bg-linear-to-br from-blue-600 to-blue-300 text-white"
       : "bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-blue-200"
   }`}
-><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentcolor":"none"}/></button>
+><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentColor":"none"}/></button>
 </div>
 
    {/* ques content*/} 
@@ -55,12 +55,12 @@ onClick={handleflip}>
 
 {/*backside */} 
 
-<div className='' style={{backfaceVisibility:"hidden" , WebkitBackfaceVisibility:"hidden" , transform:"rotateY(180deg)"}}>
+<div className='absolute inset-0 h-full w-full bg-linear-to-r from-secondary to-soft border-2  border-primary-dark rounded-2xl p-8 flex flex-col justify-between' style={{backfaceVisibility:"hidden" , WebkitBackfaceVisibility:"hidden" , transform:"rotateY(180deg)"}}>
 
 
    {/* Star button*/} 
 
-<div>
+<div className='flex justify-end'>
 
 <button
   onClick={(e) => {
@@ -72,13 +72,24 @@ onClick={handleflip}>
       ? "bg-white/30 backdrop:backdrop-blur-sm text-white border-white/40 "
       : "bg-white/20 backdrop:backdrop-blur-sm text-white/70 hover:bg-white/30 hover:text-white border border-white/20"
   }`}
-><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentcolor":"none"}/></button>
+><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentColor":"none"}/></button>
 
 </div>
 
+   {/*answer*/} 
+
+<div className='flex-1 flex items-center justify-center px-4 py-6 '>
+  <p className='text-lg font-semibold text-slate-900 text-center leading-relaxed'>{flashcard.answer}</p>
+</div>
 
 
+   {/* flip indicator*/} 
 
+<div className='flex items-center justify-center gap-2 text-xs text-slate-400 font-medium'>
+    <RotateCcw className='w-3.5 h-3.5' strokeWidth={2}/>
+    <span className=''>Click to reveal question</span>
+
+   </div>
 </div>
 
 
