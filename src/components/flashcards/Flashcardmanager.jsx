@@ -79,29 +79,30 @@ const handlereview = async(index)=>{
         toast.error("failed to review flashcard")
     }
 }
-const  handletogglestar = async(cardid)=>{
-try {
-    await flashcardservice.togglestar(cardid)
-    const updatedsets = flashcardsets.map(()=>{
-        if(set._id === selectedset._id){
-            const updatedcards = set.cards.map((card)=>{
-                cardid._id===cardid?{...card , isstarred:!card.isstarred}:card
-            })
- return {...set , cards:updatedcards}
+const handletogglestar = async (cardid) => {
+  try {
+    await flashcardservice.togglestar(cardid);
 
+    const updatedsets = flashcardsets.map((set) => {
+      if (set._id === selectedset._id) {
+        const updatedcards = set.cards.map((card) => {
+          return card._id === cardid
+            ? { ...card, isstarred: !card.isstarred }
+            : card;
+        });
 
-        }
-        return set
-    })
+        return { ...set, cards: updatedcards };
+      }
+      return set;
+    });
 
-     setflashcardssets(updatedsets.find((set)=>set._id===selectedset._id))
+    setflashcardssets(updatedsets); 
 
-toast.success("Flashcard starred status updated!")
-
-} catch (error) {
-    toast.error("failed to update star status")
-}
-}
+    toast.success("Flashcard starred status updated!");
+  } catch (error) {
+    toast.error("Failed to update star status");
+  }
+};
 
 const  handledeleterequest = (e , set)=>{
     e.stopPropagation()
