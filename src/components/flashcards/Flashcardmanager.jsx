@@ -80,7 +80,27 @@ const handlereview = async(index)=>{
     }
 }
 const  handletogglestar = async(cardid)=>{
+try {
+    await flashcardservice.togglestar(cardid)
+    const updatedsets = flashcardsets.map(()=>{
+        if(set._id === selectedset._id){
+            const updatedcards = set.cards.map((card)=>{
+                cardid._id===cardid?{...card , isstarred:!card.isstarred}:card
+            })
+ return {...set , cards:updatedcards}
 
+
+        }
+        return set
+    })
+
+     setflashcardssets(updatedsets.find((set)=>set._id===selectedset._id))
+
+toast.success("Flashcard starred status updated!")
+
+} catch (error) {
+    toast.error("failed to update star status")
+}
 }
 
 const  handledeleterequest = (e , set)=>{
@@ -133,8 +153,8 @@ const renderflashcardviewer= ()=>{
     <button onClick={handleprevcard} disabled={selectedset.cards.length<=1} className='group flex items-center gap-2 px-5 h-11 bg-slate-100 hover:bg-slate-200  text-slate-700 font-medium rounded-xl transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100'>
 <ChevronLeft className='w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200' strokeWidth={2.5}/>Previous
     </button>
-    <div className='px-4 py-2  bg-slate-50 rounded-lg border border-slate-200 '><span className='text-sm font-semibold text-slate-700'>{currentcardindex+1}{}<span className=''>/</span>{" "}{selectedset.cards.length} </span></div>
-    <button onClick={handlenextcard} className='' disabled={selectedset.cards.length<=1}>Next<ChevronRight className='' strokeWidth={2.5}/></button>
+    <div className='px-4 py-2  bg-slate-50 rounded-lg border border-slate-200 '><span className='text-sm font-semibold text-slate-700'>{currentcardindex+1}{}<span className='text-slate-400 font-normal'>/</span>{" "}{selectedset.cards.length} </span></div>
+    <button onClick={handlenextcard} className='group flex items-center gap-2 px-5 h-11 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm rounded-xl transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100' disabled={selectedset.cards.length<=1}>Next<ChevronRight className='w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200' strokeWidth={2.5}/></button>
 </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
-
-const Flashcard = () => {
+import {} from "lucide-react"
+const Flashcard = ({flashcard , ontogglestar}) => {
   return (
     <div>Flashcard</div>
   )
