@@ -57,7 +57,7 @@ onClick={handleflip}>
 <div className='absolute inset-0 h-full w-full bg-linear-to-br from-primary to-soft border-2  border-primary-dark rounded-2xl p-8 flex flex-col justify-between' style={{backfaceVisibility:"hidden" , WebkitBackfaceVisibility:"hidden" , transform:"rotateY(180deg)"}}>
 
 
-   {/* Star button ... */} 
+   {/* Star button */} 
 
 <div className='flex justify-end'>
 
