@@ -9,14 +9,20 @@ const handleflip =()=>{
 
   return   <div className='relative w-full h-72' style={{perspective:"1000px"}}>
 
-<div className={`relative w-full h-full transition-transform duration-500 transform-gpu cursor-pointer`} style={{transformStyle:"preserve-3d" , transform: isflipped? "rotateY(180deg)":"rotateY(0deg)"}}
+<div className={`relative w-full h-full transition-transform duration-500 transform-gpu cursor-pointer`}  style={{
+    transformStyle: "preserve-3d",
+    transform: isflipped ? "rotateY(180deg)" : "rotateY(0deg)"
+  }}
 
 onClick={handleflip}>
 
 
    {/* front side with ques*/} 
 
-<div className='absolute inset-0 w-full h-full bg-white/80 backdrop-blur-xl border-2 border-slate-200  rounded-2xl  flex flex-col justify-between p-8' style={{backfaceVisibility:"hidden" , WebkitBackfaceVisibility:"hidden"}}>
+<div className='absolute inset-0 w-full h-full bg-white/80 backdrop-blur-xl border-2 border-slate-200  rounded-2xl  flex flex-col justify-between p-8'  style={{
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden"
+  }}  >
 
    {/* Star button*/} 
 
@@ -30,10 +36,19 @@ onClick={handleflip}>
   }}
   className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 ${
     flashcard.isstarred
-      ? "bg-linear-to-br from-blue-600 to-blue-300 text-white"
-      : "bg-pink-700 text-slate-400 hover:bg-slate-200 hover:text-blue-900"
+      ? "text-primary-dark/90 bg-primary-dark/10"
+      : "text-slate-500 bg-primary-dark/10"
   }`}
-><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentColor":"none"}/></button>
+>
+  <Star
+    className="w-5 h-5"
+    strokeWidth={2}
+    fill={flashcard.isstarred ? "currentColor" : "none"}
+  />
+</button>
+
+
+
 </div>
 
 
@@ -56,7 +71,11 @@ onClick={handleflip}>
 
 {/*backside */} 
 
-<div className='absolute inset-0 h-full w-full bg-linear-to-br from-primary to-soft border-2  border-primary-dark rounded-2xl p-8 flex flex-col justify-between' style={{backfaceVisibility:"hidden" , WebkitBackfaceVisibility:"hidden" , transform:"rotateY(180deg)"}}>
+<div className='absolute inset-0 h-full w-full bg-primary-dark/90 border-primary-dark rounded-2xl p-8 flex flex-col justify-between'   style={{
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden",
+    transform: "rotateY(180deg)"
+  }}>
 
 
    {/* Star buttonnn */} 
@@ -70,17 +89,19 @@ onClick={handleflip}>
   }}
   className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 ${
     flashcard.isstarred
-      ? "bg-white/30 backdrop:backdrop-blur-sm text-white border-white/40 "
-      : "bg-amber-300 backdrop-blur-sm text-white/70 hover:bg-white/30 hover:text-white border border-white/20"
+      ? "text-primary-dark/90 bg-slate-200"
+      : "text-primary-dark/90 bg-slate-200"
   }`}
-><Star className='w-4 h-4'   strokeWidth={2} fill ={flashcard.isstarred ? "currentColor":"none"}/></button>
+><Star  className="w-5 h-5"
+    strokeWidth={2}
+    fill={flashcard.isstarred ? "currentColor" : "none"}  /></button>
 
 </div>
 
    {/*answer*/} 
 
 <div className='flex-1 min-h-0 flex  items-center justify-center px-4 py-6  overflow-hidden'>
-  <p className='text-lg font-semibold text-slate-900 text-center leading-relaxed'>{flashcard.answer}</p>
+  <p className='text-lg font-semibold text-slate-200 text-center leading-relaxed'>{flashcard.answer}</p>
 </div>
 
 
@@ -88,7 +109,7 @@ onClick={handleflip}>
 
 <div className='flex items-center justify-center gap-2 text-xs text-slate-400 font-medium'>
     <RotateCcw className='w-3.5 h-3.5' strokeWidth={2}/>
-    <span className='text-primary'>Click to reveal question</span>
+    <span className='text-slate-100'>Click to reveal question</span>
 
    </div>
 </div>

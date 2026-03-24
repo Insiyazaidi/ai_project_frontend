@@ -104,8 +104,13 @@ const handletogglestar = async (cardid) => {
       return set; // agr yeh set nhi h toh as it is set return krdo 
     });
 
-    setflashcardssets(updatedsets); 
+  const newselectedset = updatedsets.find(
+      (set) => set._id === selectedset._id
+    );
 
+     setflashcardssets(updatedsets);
+    setselectedset(newselectedset);
+console.log(selectedset.cards[currentcardindex].isstarred);
     toast.success("Flashcard starred status updated!");
   } catch (error) {
     toast.error("Failed to update star status");
