@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Star , RotateCcw} from "lucide-react"
 const Flashcard = ({flashcard , ontogglestar}) => {
   const [isflipped , setisflipped] = useState(false)
-  
+
 const handleflip =()=>{
   setisflipped(!isflipped)
 }
@@ -51,6 +51,7 @@ onClick={handleflip}>
 
 
 </div>
+
 
 
 {/*backside */} 
