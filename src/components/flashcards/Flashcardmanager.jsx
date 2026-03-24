@@ -91,16 +91,17 @@ const handletogglestar = async (cardid) => {
 
     // updating -ui ... 
     const updatedsets = flashcardsets.map((set) => {
-      if (set._id === selectedset._id) {  // jo set currently loop me hai, kya wahi selected set hai?"
+     
+        if (set._id === selectedset._id) {  // jo set currently loop me hai, kya wahi selected set hai agr h toh phir us set m card find kro "
         const updatedcards = set.cards.map((card) => {
-          return card._id === cardid
-            ? { ...card, isstarred: !card.isstarred }
-            : card;
+          return card._id === cardid ? { ...card, isstarred: !card.isstarred } // agr vo cardid match krgai jo hm  find krrhe h toh cheeze update krdo agr nhi toh as it is return krdo 
+: card;
         });
 
-        return { ...set, cards: updatedcards };
+        return { ...set, cards: updatedcards };  // ...set will update old data 
       }
-      return set;
+
+      return set; // agr yeh set nhi h toh as it is set return krdo 
     });
 
     setflashcardssets(updatedsets); 
