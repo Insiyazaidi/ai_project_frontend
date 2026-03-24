@@ -19,7 +19,7 @@ const Flashcardmanager = ({documentid}) => {
     const [deleting , setdeleting ]= useState(false)
     const [settodelete , setsettodelete] = useState(null)
     
-const fetchflashcardsets = async()=>{
+const fetchflashcardsets = async()=>{  // ek particular document ke kitne flashcards h 
     setloading(true)
     try {
        const  response= await flashcardservice.getflashcardfordocument(documentid)
@@ -32,6 +32,7 @@ setflashcardssets(response.data)
         setloading(false)
     }
 }
+
 
 useEffect(()=>{
     if(documentid){
@@ -57,10 +58,12 @@ const handlegenerateflashcards = async()=>{
 
 const handlenextcard = ()=>{
     if(selectedset){
-        handlereview(currentcardindex)
-        setcurrentcardindex((previndex)=>(previndex+1)%selectedset.cards.length)
+        handlereview(currentcardindex)  // jb bhi prev ya next card pr click krrhe h toh phle handlereview call horha hh 
+        setcurrentcardindex((previndex)=>(previndex+1)%selectedset.cards.length)  // circular iteration ke liye ... 
+        // previndex -9 (last card) , previndex+1 10 %10 = 0 which means it will show 0 th index card ie first one ... 
     }
 }
+
 
 const handleprevcard = ()=>{
     if(selectedset){
@@ -69,8 +72,8 @@ const handleprevcard = ()=>{
     }
 }
 
-const handlereview = async(index)=>{
-    const currentcard = selectedset?.cards[currentcardindex]
+const handlereview = async(index)=>{  // yha pr vo card aarha h vo hmne dekh liya .. 
+    const currentcard = selectedset?.cards[currentcardindex]  // currentcard ka data 
     if(!currentcard) return 
     try {
         await flashcardservice.reviewflashcard(currentcard._id , index)
@@ -79,12 +82,16 @@ const handlereview = async(index)=>{
         toast.error("failed to review flashcard")
     }
 }
+
+
+
 const handletogglestar = async (cardid) => {
   try {
     await flashcardservice.togglestar(cardid);
 
+    // updating -ui ... 
     const updatedsets = flashcardsets.map((set) => {
-      if (set._id === selectedset._id) {
+      if (set._id === selectedset._id) {  // jo set currently loop me hai, kya wahi selected set hai?"
         const updatedcards = set.cards.map((card) => {
           return card._id === cardid
             ? { ...card, isstarred: !card.isstarred }
@@ -104,9 +111,11 @@ const handletogglestar = async (cardid) => {
   }
 };
 
+
+
 const  handledeleterequest = (e , set)=>{
     e.stopPropagation()
-    setsettodelete(set)
+    setsettodelete(set)  // jis set ko delete krna  h vo save krliya .. 
     setisdeletemodalopen(true)
 }
 
@@ -114,7 +123,7 @@ const handleconfirmdelete = async()=>{
 if(!settodelete) return 
 setdeleting(true)
 try {
-    await flashcardservice.deleteflashcardset(settodelete._id)
+    await flashcardservice.deleteflashcardset(settodelete._id)  // upr phle save krliya set jo delete krna h phir ._id use krke call kiya deletflashcard ko 
     toast.success("Flashcard set deleted successfully")
    setisdeletemodalopen(false)
     setsettodelete(null)
@@ -130,15 +139,19 @@ finally{
 }
 
 const handleselectset = (set)=>{
-    setselectedset(set)
+    setselectedset(set) // selected set ko save krliya
     setcurrentcardindex(0)
 }
 
+
+
+   {/* FLASHCARD VIEWER .. */} 
+
 const renderflashcardviewer= ()=>{
-    const currentcard = selectedset.cards[currentcardindex]
+    const currentcard = selectedset.cards[currentcardindex]  // 0 th index pr jo card h vo display hojaiga ... 
     return(
         <div className='space-y-8'>
- {/* back button*/} 
+ {/* back button .. click krne pr selectedset null hojaiga jiski vjha se sets vla page render hoga  */} 
 <button className='group inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-primary transition-colors duration-200' onClick={()=>setselectedset(null)}><ArrowLeft className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-200' strokeWidth={2}/>Back to Sets</button>
 
  {/*Flashcard display*/} 
@@ -148,7 +161,7 @@ const renderflashcardviewer= ()=>{
  </div>
 
 
- {/*Navigation control */} 
+ {/*Navigation control  */} 
 
 <div className='flex items-center gap-6'>
     <button onClick={handleprevcard} disabled={selectedset.cards.length<=1} className='group flex items-center gap-2 px-5 h-11 bg-slate-100 hover:bg-slate-200  text-slate-700 font-medium rounded-xl transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100'>
@@ -157,9 +170,13 @@ const renderflashcardviewer= ()=>{
     <div className='px-4 py-2  bg-slate-50 rounded-lg border border-slate-200 '><span className='text-sm font-semibold text-slate-700'>{currentcardindex+1}{}<span className='text-slate-400 font-normal'>/</span>{" "}{selectedset.cards.length} </span></div>
     <button onClick={handlenextcard} className='group flex items-center gap-2 px-5 h-11 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm rounded-xl transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-slate-100' disabled={selectedset.cards.length<=1}>Next<ChevronRight className='w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200' strokeWidth={2.5}/></button>
 </div>
+
+ {/*Dono  button m disabled isliye lgaya h kyu ki agr cards 1 ya 1 se km h vo prev aur next ki koi zaroorat ni disbaled krdo dono hi button   */}
         </div>
     )
 }
+
+
 
 const rendersetlist = ()=>{
 if(loading){
@@ -184,6 +201,8 @@ if(flashcardsets.length===0){
     </div>
 )
 }
+
+   {/* if flashcard sets are available .. */} 
 
 return (
     <div className='space-y-6'>
@@ -266,6 +285,10 @@ return (
     </div>
 
  {/* Delete configuration model */}
+
+
+
+
 
 <Modal isOpen={isdeletemodalopen} onClose={()=>setisdeletemodalopen(false)} title="Delete Flashcard Set?">
 <div className='space-y-6'>
