@@ -11,6 +11,7 @@ import Applayout from '../../components/layout/Applayout'
 import Chatinterface from '../../components/chat/Chatinterface'
 import Aiactions from '../../components/ai/Aiactions'
 import Flashcardmanager from '../../components/flashcards/Flashcardmanager'
+import Quizmanager from '../../components/quizzes/Quizmanager'
 const Documentdetailpage = () => {
   const {id} =useParams()
   const [document , setdocument] = useState(null)
@@ -86,7 +87,7 @@ const renderflashcardstab=()=>{
 }
 
 const renderquizzestab =()=>{
-
+return <Quizmanager documentid={id}/>
 }
 
 const tabs =[
