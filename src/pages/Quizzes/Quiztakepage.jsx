@@ -155,10 +155,36 @@ value={index} checked={isselected} onChange={()=>handleoptionchange(currentques.
 )}</div>
   </div>
 
+{/* navigation buttons  */}
 
 
+<div>
+  <Button onClick={handleprevques} disabled={currentquesindex===0 || submitting} variant='secondary'>
+    <ChevronLeft className='' strokeWidth={2.5}/> Previous
+    </Button>
 
 
+{currentquesindex === quiz.questions.length - 1 ? (
+  <button onClick={handlesubmitquiz} disabled={submitting}>
+    
+    {submitting ? (
+      <div>Submitting...</div>
+    ) : (
+      <>
+        <CheckCircle2 strokeWidth={2.5} />
+        <span>Submit</span>
+      </>
+    )}
+
+  </button>
+) : (
+  <button onClick={handlenextques} disabled={submitting}>
+    Next <ChevronRight strokeWidth={2.5} />
+  </button>
+)}
+
+
+</div>
 
 
 
