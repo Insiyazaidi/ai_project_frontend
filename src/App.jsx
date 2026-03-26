@@ -33,8 +33,8 @@ const {isAuthenticated , loading} = useAuth()
     <Route path="/documents" element={<Documentlistpage/>}/>
     <Route path="/flashcards" element={<Flashcardlistpage/>}/>
      <Route path="/documents/:id/flashcards" element={<Flashcardpage/>}/>
-    <Route path="/quizzes/:quizId" element={<Quiztakepage/>}/>
-    <Route path="/quizzes/:quizId/results" element={<Quizresultpage/>}/>
+    <Route path="/quizzes/:quizid" element={<Quiztakepage/>}/>
+    <Route path="/quizzes/:quizid/results" element={<Quizresultpage/>}/>
     <Route path="/profile" element={<Profilepage/>}/>
      <Route path="*" element={<Notfoundpage/>}/>
   </Routes>

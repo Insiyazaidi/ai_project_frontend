@@ -34,7 +34,7 @@ const Quizcard = ({quiz , ondelete}) => {
 <div className='mt-2 pt-4 border-t border-slate-100'>
     {quiz?.useranswers?.length>0?(
         <Link to={`/quizzes/${quiz._id}/results`}><button className='group/btn w-full inline-flex items-center justify-center gap-2 h-11  bg-slate-100  bg-linear-to-r hover:from-primary-dark hover:to-primary text-slate-800 hover:text-white/90 font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 cursor-pointer'><BarChart2 className="w-4 h-4" strokeWidth={2.5}/>View Results</button></Link>):(
-            <Link to={`quizzes/${quiz._id}`}><button className='group/btn relative w-full h-11 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden  '>
+            <Link to={`/quizzes/${quiz._id}`}><button className='group/btn relative w-full h-11 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden  '>
                 <span className='relative z-10 flex items-center justify-center gap-2 '><Play className='w-4 h-4 ' strokeWidth={2.5}/>Start Quiz</span>
             
             <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover/btn:translate-x-full  transition-transform duration-700 '></div>

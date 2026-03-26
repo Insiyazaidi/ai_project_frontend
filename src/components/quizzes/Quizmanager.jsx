@@ -41,7 +41,7 @@ useEffect(()=>{
 },[documentid])
 
 
-const handlegeneratequiz = async(e)=>{
+const handlegeneratequiz = async(e)=>{ 
 e.preventDefault()
 setgenerating(true)
 
@@ -62,6 +62,7 @@ const handledeleterequest = (quiz)=>{
     setselectedquiz(quiz)
     setisdeletemodalopen(true)
 }
+
 const handleconfirmdelete = async()=>{
 if(!selectedquiz)return
 setdeleting(true)
@@ -70,8 +71,9 @@ try {
 toast.success(`${selectedquiz.title || "Quiz"} deleted`)
 setisdeletemodalopen(false)
 setselectedquiz(null)
-setquizzes(quizzes.filter(q=>q._id!== selectedquiz._id))
-} catch (error) {
+setquizzes(quizzes.filter(q=>q._id!== selectedquiz._id))  // to remove the deleted quiz from ui .. we have another option of fetchquizzes() 
+}
+ catch (error) {
     toast.error(error.message || "Failed to delete quiz")
 }
 finally{
@@ -90,7 +92,7 @@ if(loading){
   }
 
 return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 '>
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 '>  {/*jo quizzes fetch hogai usko map ki help se render kra using quiz card .. */}
        {quizzes.map((quiz) => (
     <Quizcard key={quiz._id} quiz={quiz} ondelete={handledeleterequest}/>
 ))}
@@ -105,9 +107,9 @@ return (
   return (
     <div className='bg-white border border-neutral-200 rounded-lg p-6'>
 <div className='flex justify-end gap-2 mb-4'>
-    <Button className='' onClick={()=>setisgeneratemodalopen(true)}><Plus size={16} />Generate Quiz</Button>
+    <Button  onClick={()=>setisgeneratemodalopen(true)}><Plus size={16} />Generate Quiz</Button>
 </div>
-    {renderquizcontent()}
+    {renderquizcontent()}   {/* as per condition we will render content .. */}
 
 
 {/*  Generate quiz*/}
@@ -131,10 +133,6 @@ return (
 
 
  {/* Delete configuration model */}
-
-
-
-
 
 <Modal isOpen={isdeletemodalopen} onClose={()=>setisdeletemodalopen(false)} title="Confirm Delete Quiz">
 <div className='space-y-6'>
