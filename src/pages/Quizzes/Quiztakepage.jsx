@@ -57,15 +57,16 @@ const handleprevques =()=>{
   }
 }
 
-const handlesubmitquiz = async()=>{
+const handlesubmitquiz = async()=>{  // seleted ans obj h toh usmai key ke corresponding value - optionindex h vo user ne select kiya h 
 setsubmitting(true)
 try {
-  const formattedanswers = Object.keys(selectedanswers).map(questionid=>{
-    const question = quiz.questions.find(q=>q._id===questionid)
-    const quesindex = quiz.questions.findIndex(q=>q._id===questionid)
-    const optionindex = selectedanswers[questionid]
-    const selectedanswers = question.options[optionindex]
-    return {quesindex , selectedanswers}
+  const formattedanswers = Object.keys(selectedanswers).map(questionid=>{  // selectedans obj se quesid lelo (key)
+    const question = quiz.questions.find(q=>q._id===questionid)  // quesid ki help se pura ques+option jo bhi store h ques ki form m vi nikalo 
+    const questionindex = quiz.questions.findIndex(q=>q._id===questionid) // ques id ki help se ques index nikalo 
+    const optionindex = selectedanswers[questionid]  // us ques id ke corresponding jo value store ki h ..means optionindex  selected by user 
+    const selectedanswer = question.options[optionindex] // ab us optionindex pr jo actual text h vo nikala h 
+   
+    return {questionindex , selectedanswer}   // returned quesindex and textual answer selected by user .. 
   })
    
   await quizservice.submitquiz(quizid , formattedanswers)
@@ -74,6 +75,7 @@ try {
 
 } catch (error) {
   toast.error(error.message || "Failed to submit quiz")
+  console.log(error)
 }
 }
 
@@ -185,9 +187,11 @@ value={index} checked={isselected} onChange={()=>handleoptionchange(currentques.
     
     <span className='relative z-10 flex items-center justify-center gap-2 '>
       {submitting ? (
-        <>
-          <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin '>Submitting...</div>
-        </>
+        <div className='flex items-center gap-2'>
+
+          <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin '></div>
+          <span>Submitting...</span>
+        </div>
       ) : (
         <>
           <CheckCircle2 className='w-4 h-4' strokeWidth={2.5} />Submit Quiz 
@@ -225,18 +229,7 @@ value={index} checked={isselected} onChange={()=>handleoptionchange(currentques.
     )
   })}
 </div>
-
-
-
-
 </div>
-
-
-
-
-
-
-
 
 </Applayout>
   )
