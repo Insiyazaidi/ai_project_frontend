@@ -107,8 +107,8 @@ const incorrect   = totalques - correctans
   <div className='flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl'>
     <Target className='w-4 h-4 text-slate-600'/><span className='text-sm font-semibold text-slate-700'>{totalques} Total</span>
   </div>
-  <div className='flex items-center gap-2 px-4 py-2 bg-linear-to-r from-primary-dark to-primary border border-soft rounded-xl'>
-    <CheckCircle2 className='w-4 h-4 text-white/90'/><span className='text-sm font-semibold text-white/90'>{correctans} Correct</span>
+  <div className='flex items-center gap-2 px-4 py-2 bg-linear-to-r from-emerald-500 to-emerald-400 border border-soft rounded-xl'>
+    <CheckCircle2 className='w-4 h-4 text-emerald-600'/><span className='text-sm font-semibold text-emerald-800'>{correctans} Correct</span>
   </div>
 <div className='flex items-center gap-2 px-4 py-2 bgrose-50 border border-rose-200 rounded-xl'>
     <XCircle className='w-4 h-4 text-rose-600'/><span className='text-sm font-semibold text-rose-700'>{incorrect} Incorrect</span>
@@ -119,8 +119,6 @@ const incorrect   = totalques - correctans
 {/*   Question review   */}
 
 <div className='space-y-6'>
-
-
   <div className='flex items-center gap-3 mb-2'>
     <BookOpen className='w-5 h-5 text-slate-600' strokeWidth={2}/>
     <h3 className='text-lg font-semibold text-slate-900'>Detailed Review</h3>
@@ -144,8 +142,8 @@ const incorrect   = totalques - correctans
           </div>
           <h4 className='text-base font-semibold text-slate-900 leading-relaxed'>{result.question}</h4>
         </div>
-        <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iscorrect ? "bg-soft border-2  border-primary-dark" :"bg-rose-50 border-2 border-rose-200"}`}>
-{iscorrect ? <CheckCircle2 className='w-5 h-5 text-primary-dark' strokeWidth={2.5}/>:<XCircle className='text-rose-600' strokeWidth={2.5}/>}
+        <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iscorrect ? "bg-emerald-400  border-emerald-600" :"bg-rose-50 border-2 border-rose-200"}`}>
+{iscorrect ? <CheckCircle2 className='w-5 h-5 text-emerald-800' strokeWidth={2.5}/>:<XCircle className='text-rose-600' strokeWidth={2.5}/>}
         </div>
       </div>
 
@@ -153,17 +151,17 @@ const incorrect   = totalques - correctans
 
 <div className='space-y-3 mb-4'>
   {result.options.map((option , optionindex)=>{
-    const iscorrectoption = optionindex=== correctanswerindex
-    const isuseranswer = optionindex === useranswerindex 
-    const iswronganswer = isuseranswer && !iscorrect 
+    const iscorrectoption = optionindex=== correctanswerindex  // kya yeh option correct h  
+    const isuseranswer = optionindex === useranswerindex  // kya user ne yeh option select kiya?
+    const iswronganswer = isuseranswer && !iscorrect  // kya yeh userne select kiya aur answer overall wrong ho   
     return (
       <div key={optionindex} className={`relative px-4 py-3 rounded-lg  border-2 transition-all duration-200 ${iscorrectoption
-        ? "bg-soft border-primary-dark" : iswronganswer ? "bg-rose-50 border-rose-300" : "bg-slate-50 border-slate-200"
+        ? "bg-emerald-100 border-emerald-700" : iswronganswer ? "bg-rose-50 border-rose-300" : "bg-slate-50 border-slate-200"
       }` }>
         <div className='flex items-center justify-between gap-4 '>
-          <span className={`text-sm font-medium ${iscorrectoption ? "text-primary-dark" : iswronganswer ? "text-rose-900" : "text-slate-500"}`}>{option}</span>
+          <span className={`text-sm font-medium ${iscorrectoption ? "text-emerald-700" : iswronganswer ? "text-rose-900" : "text-slate-500"}`}>{option}</span>
        <div className='flex items-center gap-2 '>
-        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-primary-dark rounded-lg text-xs font-semibold text-white/90'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
+        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-emerald-400 rounded-lg text-xs font-semibold text-white/90'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
         {iswronganswer && (<span className='inline-flex items-center gap-1 px-2 py-1 bg-rose-100 border-rose-300 rounded-lg text-xs font-semibold text-rose-700'><XCircle className='w-3 h-3' strokeWidth={2.5}  />Your answer</span>)}
        </div>
         </div>
@@ -190,6 +188,10 @@ const incorrect   = totalques - correctans
     </div>
   )
 }
+
+{/*  action button    */}
+
+
 
 
 
