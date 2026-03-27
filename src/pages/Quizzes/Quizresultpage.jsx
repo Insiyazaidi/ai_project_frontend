@@ -163,7 +163,7 @@ const incorrect   = totalques - correctans
         <div className='flex items-center justify-between gap-4 '>
           <span className={`text-sm font-medium ${iscorrectoption ? "text-primary-dark" : iswronganswer ? "text-rose-900" : "text-slate-500"}`}>{option}</span>
        <div className='flex items-center gap-2 '>
-        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-amber-200 border-amber-700 rounded-lg text-xs font-semibold text-primary-dark'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
+        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-primary-dark rounded-lg text-xs font-semibold text-white/90'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
         {iswronganswer && (<span className='inline-flex items-center gap-1 px-2 py-1 bg-rose-100 border-rose-300 rounded-lg text-xs font-semibold text-rose-700'><XCircle className='w-3 h-3' strokeWidth={2.5}  />Your answer</span>)}
        </div>
         </div>
@@ -177,14 +177,14 @@ const incorrect   = totalques - correctans
 
 {
   result.explanation && (
-    <div>
-      <div>
-        <div>
-          <BookOpen/>
+    <div className='p-4 bg-linear-to-r from-slate-50 to-slate-100/50 border border-slate-200 rounded-xl '>
+      <div className='flex items-start gap-3'>
+        <div className='shrink-0 w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center mt-0.5'>
+          <BookOpen className='w-4 h-4 text-slate-600'/>
         </div>
-        <div>
-          <p>Explanation</p>
-          <p>{result.explanation}</p>
+        <div className='flex-1'>
+          <p className='text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1'>Explanation</p>
+          <p className='text-sm text-slate-700 leading-relaxed'>{result.explanation}</p>
         </div>
       </div>
     </div>
