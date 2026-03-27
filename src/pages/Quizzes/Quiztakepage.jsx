@@ -147,7 +147,7 @@ const answeredcount = Object.keys(selectedanswers).length  // kitni keys h objec
   currentques.options.map(( option,index)=>{ // here index is option index 
 const isselected = selectedanswers[currentques._id] ===index // ab yha checkk krhe ki  selected answer object m jo option index store h vhi ho tum ya nhi 
 return(
-  <label key={index} className={`group relative flex items-center p-3 border-2  rounded-xl cursor-pointer transition-all duration-200 ${isselected ? 'border-primary-dark bg-soft text-white ' :'border-slate-200 bg-slate-50/50 hover:border-slate-300 ' } `}>
+  <label key={index} className={`group relative flex items-center p-3 border-2  rounded-xl cursor-pointer transition-all duration-200 ${isselected ? 'border-primary-dark bg-soft  ' :'border-slate-200 bg-slate-50/50 hover:border-slate-300 ' } `}>
 
 <input type='radio' name={`question-${currentques._id}`} 
 value={index} checked={isselected} onChange={()=>handleoptionchange(currentques._id , index)} className='sr-only'>
