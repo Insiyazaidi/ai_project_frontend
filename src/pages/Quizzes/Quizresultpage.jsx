@@ -107,8 +107,8 @@ const incorrect   = totalques - correctans
   <div className='flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl'>
     <Target className='w-4 h-4 text-slate-600'/><span className='text-sm font-semibold text-slate-700'>{totalques} Total</span>
   </div>
-  <div className='flex items-center gap-2 px-4 py-2 bg-linear-to-r from-emerald-500 to-emerald-400 border border-soft rounded-xl'>
-    <CheckCircle2 className='w-4 h-4 text-emerald-600'/><span className='text-sm font-semibold text-emerald-800'>{correctans} Correct</span>
+  <div className='flex items-center gap-2 px-4 py-2  bg-emerald-200  border border-soft rounded-xl'>
+    <CheckCircle2 className='w-4 h-4 text-primary-dark'/><span className='text-sm font-semibold text-primary-dark'>{correctans} Correct</span>
   </div>
 <div className='flex items-center gap-2 px-4 py-2 bgrose-50 border border-rose-200 rounded-xl'>
     <XCircle className='w-4 h-4 text-rose-600'/><span className='text-sm font-semibold text-rose-700'>{incorrect} Incorrect</span>
@@ -143,7 +143,7 @@ const incorrect   = totalques - correctans
           <h4 className='text-base font-semibold text-slate-900 leading-relaxed'>{result.question}</h4>
         </div>
         <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iscorrect ? "bg-emerald-400  border-emerald-600" :"bg-rose-50 border-2 border-rose-200"}`}>
-{iscorrect ? <CheckCircle2 className='w-5 h-5 text-emerald-800' strokeWidth={2.5}/>:<XCircle className='text-rose-600' strokeWidth={2.5}/>}
+{iscorrect ? <CheckCircle2 className='w-5 h-5 text-white/80' strokeWidth={2.5}/>:<XCircle className='text-rose-600' strokeWidth={2.5}/>}
         </div>
       </div>
 
@@ -175,14 +175,14 @@ const incorrect   = totalques - correctans
 
 {
   result.explanation && (
-    <div className='p-4 bg-linear-to-r from-slate-50 to-slate-100/50 border border-slate-200 rounded-xl '>
+    <div className='p-4 bg-primary-dark/90 border border-slate-200 rounded-xl '>
       <div className='flex items-start gap-3'>
         <div className='shrink-0 w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center mt-0.5'>
           <BookOpen className='w-4 h-4 text-slate-600'/>
         </div>
         <div className='flex-1'>
-          <p className='text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1'>Explanation</p>
-          <p className='text-sm text-slate-700 leading-relaxed'>{result.explanation}</p>
+          <p className='text-xs font-semibold text-slate-200 uppercase tracking-wide mb-1'>Explanation</p>
+          <p className='text-sm text-slate-200 leading-relaxed'>{result.explanation}</p>
         </div>
       </div>
     </div>
