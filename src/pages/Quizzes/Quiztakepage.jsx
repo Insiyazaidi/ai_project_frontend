@@ -15,7 +15,7 @@ const Quiztakepage = () => {
   const [quiz , setquiz] = useState(null) 
   const [loading, setloading]= useState(true)
   const [currentquesindex , setcurrentquesindex] = useState(0)
-  const [selectedanswers , setselectedanswers] = useState({}) 
+  const [selectedanswers , setselectedanswers] = useState({})   // ek object h toh ismai key , value ki form m store hoga 
   const [submitting, setsubmitting]= useState(false)
 
 
@@ -78,15 +78,19 @@ if(!quiz || quiz.questions.length===0){
   )
 }
 
-const currentques=quiz.questions[currentquesindex]  // current ques nikala current ques index se 
-const isanswered = selectedanswers.hasOwnProperty(currentques._id)
-const answeredcount = Object.keys(selectedanswers).length
+const currentques=quiz.questions[currentquesindex] 
+
+// current ques nikala saare ques m  se using index of current ques 
+const isanswered = selectedanswers.hasOwnProperty(currentques._id) 
+// Kya user ne is current question ka answer diya hai .. finding through currentques._id(key) , value m index store hota h option ka 
+
+const answeredcount = Object.keys(selectedanswers).length  // kitni keys h object m  
 
 
   return (
 <Applayout>
 
-<div className='max-w-4xl mx-auto'>
+<div className='max-w-4xl mx-auto h-screen '>
   <Pageheader title={quiz.title || "Take Quiz"}/>
 
    {/* Progress bar */}
@@ -98,7 +102,7 @@ const answeredcount = Object.keys(selectedanswers).length
   <div className='relative h-2 bg-slate-100 rounded-full overflow-hidden'>
 
   <div className='absolute inset-y-0 left-0 bg-linear-to-r from-primary-dark to-primary rounded-full transition-all duration-500 ease-out'
-   style={{width: `${((currentquesindex+1)/quiz.questions.length)*100}`}} />
+   style={{width: `${((currentquesindex+1)/quiz.questions.length)*100}%`}} />
   
   </div>
 </div>
@@ -120,10 +124,12 @@ const answeredcount = Object.keys(selectedanswers).length
 
 <div className='space-y-3'>
   {
-  currentques.options.map(( option,index)=>{
-const isselected = selectedanswers[currentques._id] ===index 
+
+    // { "acgy8y6cc" : 2} means 'acgy8ycc' - is quesid and 2 is the option index 
+  currentques.options.map(( option,index)=>{ // here index is option index 
+const isselected = selectedanswers[currentques._id] ===index // ab yha checkk krhe ki  selected answer object m jo option index store h vhi ho tum ya nhi 
 return(
-  <label key={index} className={`group relative flex items-center p-3 border-2 mb-5 rounded-xl cursor-pointer transition-all duration-200 ${isselected ? 'border-primary-dark bg-soft text-white ' :'border-slate-200 bg-slate-50/50 hover:border-slate-300 ' } `}>
+  <label key={index} className={`group relative flex items-center p-3 border-2  rounded-xl cursor-pointer transition-all duration-200 ${isselected ? 'border-primary-dark bg-soft text-white ' :'border-slate-200 bg-slate-50/50 hover:border-slate-300 ' } `}>
 
 <input type='radio' name={`question-${currentques._id}`} 
 value={index} checked={isselected} onChange={()=>handleoptionchange(currentques._id , index)} className='sr-only'>
@@ -157,33 +163,56 @@ value={index} checked={isselected} onChange={()=>handleoptionchange(currentques.
 
 {/* navigation buttons  */}
 
-
-<div>
+<div className='flex items-center justify-between gap-4'>
   <Button onClick={handleprevques} disabled={currentquesindex===0 || submitting} variant='secondary'>
-    <ChevronLeft className='' strokeWidth={2.5}/> Previous
+    <ChevronLeft className='w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200' strokeWidth={2.5}/> Previous
     </Button>
 
 
 {currentquesindex === quiz.questions.length - 1 ? (
-  <button onClick={handlesubmitquiz} disabled={submitting}>
+  <button onClick={handlesubmitquiz} disabled={submitting} className=' group relative px-8 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 disabled:opacity-50 disabled: cursor-not-allowed disabled:active:scale-100 overflow-hidden' >
     
-    {submitting ? (
-      <div>Submitting...</div>
-    ) : (
-      <>
-        <CheckCircle2 strokeWidth={2.5} />
-        <span>Submit</span>
-      </>
-    )}
+    <span className='relative z-10 flex items-center justify-center gap-2 '>
+      {submitting ? (
+        <>
+          <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin '>Submitting...</div>
+        </>
+      ) : (
+        <>
+          <CheckCircle2 className='w-4 h-4' strokeWidth={2.5} />Submit Quiz 
+        </>
+      )}
+    </span>
+
+    <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-200'  />
 
   </button>
 ) : (
-  <button onClick={handlenextques} disabled={submitting}>
-    Next <ChevronRight strokeWidth={2.5} />
-  </button>
+  <Button onClick={handlenextques} disabled={submitting}>
+    Next
+    <ChevronRight className='w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200' strokeWidth={2.5} />
+  </Button>
 )}
 
+</div>
 
+{/*  question navigation dots */}
+
+<div className='mt-0 flex items-center justify-center gap-2 flex-wrap '>
+  {quiz.questions.map((_, index)=>{
+    const isansweredques = selectedanswers.hasOwnProperty(quiz.questions[index]._id)
+    const iscurrent = index=== currentquesindex
+    return(
+      <button key={index} onClick={()=>setcurrentquesindex(index)} disabled={submitting} className={`w-8 h-8 rounded-lg font-sembold 
+      text-xs transition-all duration-200 ${iscurrent ? 'bg-linear-to-r from-primary-dark to-primary text-white': isansweredques ?
+        'bg-soft text-primary-dark ': 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+      } disabled:opacity-50 disabled:cursor-not-allowed
+      
+      `}>
+{index+1}
+      </button>
+    )
+  })}
 </div>
 
 
