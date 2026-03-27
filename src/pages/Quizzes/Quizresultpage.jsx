@@ -162,9 +162,9 @@ const incorrect   = totalques - correctans
       }` }>
         <div className='flex items-center justify-between gap-4 '>
           <span className={`text-sm font-medium ${iscorrectoption ? "text-primary-dark" : iswronganswer ? "text-rose-900" : "text-slate-500"}`}>{option}</span>
-       <div>
-        {iscorrectoption && (<span><CheckCircle2 className='' strokeWidth={2.5}/>Correct</span>)}
-        {iswronganswer && (<span><XCircle className='' strokeWidth={2.5}  />Your answer</span>)}
+       <div className='flex items-center gap-2 '>
+        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-amber-200 border-amber-700 rounded-lg text-xs font-semibold text-primary-dark'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
+        {iswronganswer && (<span className='inline-flex items-center gap-1 px-2 py-1 bg-rose-100 border-rose-300 rounded-lg text-xs font-semibold text-rose-700'><XCircle className='w-3 h-3' strokeWidth={2.5}  />Your answer</span>)}
        </div>
         </div>
       </div>
