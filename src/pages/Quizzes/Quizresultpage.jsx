@@ -192,6 +192,20 @@ const incorrect   = totalques - correctans
 {/*  action button    */}
 
 
+<div className='mt-8 flex justify-center'>
+  
+  <Link to={`/documents${quiz.document._id}`}>
+  <button className='group relative px-8 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden'>
+    <span className='relative  z-10 flex items-center gap-2 '><ArrowLeft className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-200' strokeWidth={2.5}/>Return to Document</span>
+    <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700'/>
+  </button>
+  
+  </Link>
+
+
+
+</div>
+
 
 
 
