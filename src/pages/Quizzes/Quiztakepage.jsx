@@ -37,7 +37,7 @@ useEffect(()=>{
 } , [quizid])
 
 
-const handleoptionchange = (questionid ,  optionindex)=>{
+const handleoptionchange = (questionid ,  optionindex)=>{ // Jo pehle answers the unhe rakho, aur current question ka answer update/add karo"
 setselectedanswers((prev)=>({
   ...prev , [questionid]:optionindex
 
@@ -58,7 +58,23 @@ const handleprevques =()=>{
 }
 
 const handlesubmitquiz = async()=>{
+setsubmitting(true)
+try {
+  const formattedanswers = Object.keys(selectedanswers).map(questionid=>{
+    const question = quiz.questions.find(q=>q._id===questionid)
+    const quesindex = quiz.questions.findIndex(q=>q._id===questionid)
+    const optionindex = selectedanswers[questionid]
+    const selectedanswers = question.options[optionindex]
+    return {quesindex , selectedanswers}
+  })
+   
+  await quizservice.submitquiz(quizid , formattedanswers)
+  toast.success("Quiz submitted successfully")
+  navigate(`/quizzes/${quizid}/results`)
 
+} catch (error) {
+  toast.error(error.message || "Failed to submit quiz")
+}
 }
 
 if(loading){
@@ -135,7 +151,7 @@ return(
 value={index} checked={isselected} onChange={()=>handleoptionchange(currentques._id , index)} className='sr-only'>
 </input>
 
- {/* custom radio btton */}
+ {/* custom radio button */}
 
 <div className={`shrink-0 w-5 h-5 rounded-full border-2 transition-all duration-200 ${isselected ? 'border-primary-dark bg-soft' : 'border-slate-200 group-hover:border-primary'}`}>
 {isselected && (
@@ -150,11 +166,6 @@ value={index} checked={isselected} onChange={()=>handleoptionchange(currentques.
 <span className={`ml-4 text-sm font-semibold transition-colors duration-200 ${isselected ? "text-primary-dark " :"text-slate-700 group-hover:text-slate-900"}`}>
 {option}
 </span>
-
-
-
-
-
   </label>
 )   
   }
