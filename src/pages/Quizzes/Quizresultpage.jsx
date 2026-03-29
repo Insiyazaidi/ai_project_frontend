@@ -107,8 +107,8 @@ const incorrect   = totalques - correctans
   <div className='flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl'>
     <Target className='w-4 h-4 text-slate-600'/><span className='text-sm font-semibold text-slate-700'>{totalques} Total</span>
   </div>
-  <div className='flex items-center gap-2 px-4 py-2  bg-emerald-200  border border-soft rounded-xl'>
-    <CheckCircle2 className='w-4 h-4 text-primary-dark'/><span className='text-sm font-semibold text-primary-dark'>{correctans} Correct</span>
+  <div className='flex items-center gap-2 px-4 py-2  bg-emerald-50  border border-emerald-200 rounded-xl'>
+    <CheckCircle2 className='w-4 h-4 text-emerald-600'/><span className='text-sm font-semibold text-emerald-700'>{correctans} Correct</span>
   </div>
 <div className='flex items-center gap-2 px-4 py-2 bgrose-50 border border-rose-200 rounded-xl'>
     <XCircle className='w-4 h-4 text-rose-600'/><span className='text-sm font-semibold text-rose-700'>{incorrect} Incorrect</span>
@@ -142,7 +142,7 @@ const incorrect   = totalques - correctans
           </div>
           <h4 className='text-base font-semibold text-slate-900 leading-relaxed'>{result.question}</h4>
         </div>
-        <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iscorrect ? "bg-emerald-400  border-emerald-600" :"bg-rose-50 border-2 border-rose-200"}`}>
+        <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${iscorrect ? "bg-emerald-50  border-emerald-200" :"bg-rose-50 border-2 border-rose-200"}`}>
 {iscorrect ? <CheckCircle2 className='w-5 h-5 text-white/80' strokeWidth={2.5}/>:<XCircle className='text-rose-600' strokeWidth={2.5}/>}
         </div>
       </div>
@@ -156,12 +156,12 @@ const incorrect   = totalques - correctans
     const iswronganswer = isuseranswer && !iscorrect  // kya yeh userne select kiya aur answer overall wrong ho   
     return (
       <div key={optionindex} className={`relative px-4 py-3 rounded-lg  border-2 transition-all duration-200 ${iscorrectoption
-        ? "bg-emerald-100 border-emerald-700" : iswronganswer ? "bg-rose-50 border-rose-300" : "bg-slate-50 border-slate-200"
+        ? "bg-emerald-100 border-emerald-300" : iswronganswer ? "bg-rose-50 border-rose-300" : "bg-slate-50 border-slate-200"
       }` }>
         <div className='flex items-center justify-between gap-4 '>
-          <span className={`text-sm font-medium ${iscorrectoption ? "text-emerald-700" : iswronganswer ? "text-rose-900" : "text-slate-500"}`}>{option}</span>
+          <span className={`text-sm font-medium ${iscorrectoption ? "text-emerald-900" : iswronganswer ? "text-rose-900" : "text-slate-700"}`}>{option}</span>
        <div className='flex items-center gap-2 '>
-        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-emerald-400 rounded-lg text-xs font-semibold text-white/90'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
+        {iscorrectoption && (<span  className='inline-flex items-center gap-1 px-2 py-1 bg-emerald-100  border border-emerald-300 rounded-lg text-xs font-semibold text-emerald-700'  ><CheckCircle2 className='w-3 h-3' strokeWidth={2.5}/>Correct</span>)}
         {iswronganswer && (<span className='inline-flex items-center gap-1 px-2 py-1 bg-rose-100 border-rose-300 rounded-lg text-xs font-semibold text-rose-700'><XCircle className='w-3 h-3' strokeWidth={2.5}  />Your answer</span>)}
        </div>
         </div>
@@ -175,36 +175,21 @@ const incorrect   = totalques - correctans
 
 {
   result.explanation && (
-    <div className='p-4 bg-primary-dark/90 border border-slate-200 rounded-xl '>
+    <div className='p-4 bg-linear-to-br from-slate-50 to-slate-100/50  border border-slate-200 rounded-xl '>
       <div className='flex items-start gap-3'>
         <div className='shrink-0 w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center mt-0.5'>
           <BookOpen className='w-4 h-4 text-slate-600'/>
         </div>
         <div className='flex-1'>
-          <p className='text-xs font-semibold text-slate-200 uppercase tracking-wide mb-1'>Explanation</p>
-          <p className='text-sm text-slate-200 leading-relaxed'>{result.explanation}</p>
+          <p className='text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1'>Explanation</p>
+          <p className='text-sm text-slate-700 leading-relaxed'>{result.explanation}</p>
         </div>
       </div>
     </div>
   )
 }
 
-{/*  action button    */}
 
-
-<div className='mt-8 flex justify-center'>
-  
-  <Link to={`/documents${quiz.document._id}`}>
-  <button className='group relative px-8 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden'>
-    <span className='relative  z-10 flex items-center gap-2 '><ArrowLeft className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-200' strokeWidth={2.5}/>Return to Document</span>
-    <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700'/>
-  </button>
-  
-  </Link>
-
-
-
-</div>
 
 
 
@@ -219,7 +204,22 @@ const incorrect   = totalques - correctans
 })}
 </div>
 
+{/*  action button    */}
 
+
+<div className='mt-8 flex justify-center'>
+  
+  <Link to={`/documents/${quiz.document._id}`}>
+  <button className='group relative px-8 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden'>
+    <span className='relative  z-10 flex items-center gap-2 '><ArrowLeft className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-200' strokeWidth={2.5}/>Return to Document</span>
+    <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700'/>
+  </button>
+  
+  </Link>
+
+
+
+</div>
 
 
 
