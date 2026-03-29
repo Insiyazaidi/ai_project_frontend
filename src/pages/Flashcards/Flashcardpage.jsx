@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams , Link } from 'react-router-dom'
 import {ArrowLeft , Plus , ChevronLeft , ChevronRight , Trash2} from "lucide-react"
 import toast from "react-hot-toast"
@@ -10,6 +10,14 @@ import Spinner from '../../components/common/Spinner.jsx'
 import Modal from '../../components/common/Modal.jsx'
 import Flashcard from '../../components/flashcards/Flashcard.jsx'
 const Flashcardpage = () => {
+  const {id:documentid} = useParams()
+  const [flashcardsets , setflashcardsets] = useState([])
+  const [flashcards , setflashcards] = useState([])
+  const [generating , setgenerating] = useState(false)
+  const  [loading , setloading] = useState(true)
+  const [isdeletemodalopen , setisdeletemodalopen] = useState(false)
+  const [currentcardindex , setcurrentcardindex]= useState(0)
+  const  [deleting , setdeleting] = useState(false)
   return (
     <div>Flashcardpage</div>
   )
