@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams , Link } from 'react-router-dom'
 import {ArrowLeft , Plus , ChevronLeft , ChevronRight , Trash2} from "lucide-react"
 import toast from "react-hot-toast"
@@ -18,6 +18,24 @@ const Flashcardpage = () => {
   const [isdeletemodalopen , setisdeletemodalopen] = useState(false)
   const [currentcardindex , setcurrentcardindex]= useState(0)
   const  [deleting , setdeleting] = useState(false)
+  const fetchflashcard = async()=>{
+    setloading(true)
+    try {
+      const response = await flashcardservice.getflashcardfordocument(documentid)
+      console.log(response)
+      setflashcardsets(response.data[0])
+      setflashcards(response.data[0]?.cards || [])
+    } catch (error) {
+      toast.error("Failed to fetch flashcards")
+      console.error(error)
+    }
+    finally{
+      setloading(false)
+    }
+  }
+  useEffect(()=>{
+    fetchflashcard()
+  } , [documentid])
   return (
     <div>Flashcardpage</div>
   )
