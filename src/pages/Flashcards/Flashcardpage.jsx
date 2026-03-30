@@ -9,6 +9,8 @@ import aiservice from "../../services/aiservice.js"
 import Spinner from '../../components/common/Spinner.jsx'
 import Modal from '../../components/common/Modal.jsx'
 import Flashcard from '../../components/flashcards/Flashcard.jsx'
+import Button from '../../components/common/Button.jsx'
+import Applayout from '../../components/layout/Applayout.jsx'
 const Flashcardpage = () => {
   const {id:documentid} = useParams()
   const [flashcardsets , setflashcardsets] = useState([])
@@ -140,7 +142,10 @@ const currentcard = flashcards[currentcardindex]
 
 
 return(
-  <div>
+
+  <Applayout>
+
+ <div>
 
 <div className='mb-4'>
   <Link to={`/documents/${documentid}`} className='inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-neutral-900
@@ -196,6 +201,11 @@ Cancel
 
 
   </div>
+
+
+  </Applayout>
+
+ 
 )
 
 

@@ -1,8 +1,47 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { useAuth } from '../../context/Authcontext'
+import toast from 'react-hot-toast'
+import  {User , Mail , Lock} from "lucide-react"
+import Pageheader from '../../components/common/Pageheader'
 const Profilepage = () => {
+  const [loading , setloading]=useState(true)
+  const [passwordloading , setpasswordloading] = useState(false)
+  const [username , setusername] = useState("")
+    const [email , setemail] = useState("")
+      const [currentpassword , setcurrentpassword] = useState("")
+    const [newpassword , setnewpassword] = useState("")
+    const [confirmnewpassword , setconfirmnewpassword] = useState("")
   return (
-    <div>Profilepage</div>
+    <div>
+      <Pageheader title="Profile Settings"/>
+      <div className='space-y-8 '>
+
+<div className='bg-white border border-neutral-200 rounded-lg p-6'>
+  <h3 className='text-lg font-semibold text-neutral-900 mb-4'>User Information</h3>
+  <div className='space-y-4'>
+    <div className=''>
+      <label className='block text-xs font-medium text-neutral-700 mb-1.5 '>Username</label>
+      <div className='relative'>
+        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none '><User className='h-4 w-4 text-neutral-400'/></div>
+        <p className='w-full h-9 pl-9 pr-3 pt-2 border border-neutral-200 rounded-lg bg-neutral-50 text-sm text-neutral-900'>{username}</p>
+      </div>
+    </div>
+  </div>
+
+<label className='block text-xs  font-medium text-neutral-700 mb-1.5 '>Email Address</label>
+<div className='relative'>
+  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+     <Mail className='h-4 w-4 text-neutral-400'/>
+   <p className='w-full h-9 pl-9 pr-3 pt-2 border border-neutral-200 rounded-lg bg-neutral-50 text-sm text-neutral-900 '>{email}</p> 
+    </div>
+</div>
+</div>
+    </div>
+
+
+
+
+    </div>
   )
 }
 
