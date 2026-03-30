@@ -5,6 +5,7 @@ import  {User , Mail , Lock} from "lucide-react"
 import Pageheader from '../../components/common/Pageheader'
 import Button from '../../components/common/Button'
 import authservice from '../../services/authservice'
+import Applayout from '../../components/layout/Applayout'
 const Profilepage = () => {
   const [loading , setloading]=useState(true)
   const [passwordloading , setpasswordloading] = useState(false)
@@ -38,7 +39,7 @@ const Profilepage = () => {
     } , [])
 
 
-const handlechangepassword = async()=>{
+const handlechangepassword = async(e)=>{
   e.preventDefault()
   if(newpassword !==confirmnewpassword){
     toast.error("New passwords do not match")
@@ -65,7 +66,9 @@ const handlechangepassword = async()=>{
 
 
   return (
-    <div>
+    <Applayout>
+
+ <div>
       <Pageheader title="Profile Settings"/>
       <div className='space-y-8 '>
 
@@ -81,7 +84,7 @@ const handlechangepassword = async()=>{
     </div>
   </div>
 
-<label className='block text-xs  font-medium text-neutral-700 mb-1.5 '>Email Address</label>
+<label className='block text-xs  font-medium text-neutral-700  mt-1.5 '>Email Address</label>
 <div className='relative'>
   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
      <Mail className='h-4 w-4 text-neutral-400'/>
@@ -96,7 +99,7 @@ const handlechangepassword = async()=>{
 
 <div className='bg-white border border-neutral-200 rounded-lg p-6'>
   <h3 className='text-lg font-semibold text-neutral-900 mb-4'>Change Password</h3>
-  <form onSubmit={handlechangepassword} className=''>
+  <form onSubmit={handlechangepassword} className='space-y-4'>
 
 <div>
 
@@ -106,7 +109,7 @@ const handlechangepassword = async()=>{
     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
       <Lock className='h-4 w-4 text-neutral-400'/>
     </div>
- <input type='password'value={currentpassword} onChange={(e)=>setcurrentpassword(e.target.value)} required className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent '></input>
+ <input type='password'value={currentpassword} onChange={(e)=>setcurrentpassword(e.target.value)} required className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent '></input>
   </div>
 </div>
 
@@ -117,7 +120,7 @@ const handlechangepassword = async()=>{
   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
     <Lock className='h-4 w-4 text-neutral-400'/>
   </div>
-  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setnewpassword(e.target.value)} value={newpassword} type="password"/>
+  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setnewpassword(e.target.value)} value={newpassword} type="password"/>
 </div>
 </div>
 
@@ -129,12 +132,12 @@ const handlechangepassword = async()=>{
   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
     <Lock className='h-4 w-4 text-neutral-400'/>
   </div>
-  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setconfirmnewpassword(e.target.value)} value={confirmnewpasswordpassword} type="password"/>
+  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setconfirmnewpassword(e.target.value)} value={confirmnewpassword} type="password"/>
 </div>
 </div>
 
-<div>
-  <Button type='submit' disabled={passwordloading}>
+<div className='flex items-center justify-end'>
+  <Button type='submit' disabled={passwordloading} >
     {passwordloading ? "Changing" : "Change Password"}
   </Button>
 </div>
@@ -147,6 +150,10 @@ const handlechangepassword = async()=>{
 
 
     </div>
+
+
+    </Applayout>
+   
   )
 }
 
