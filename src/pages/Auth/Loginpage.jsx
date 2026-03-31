@@ -6,7 +6,6 @@ import authservice from "../../services/authservice";
 import toast from "react-hot-toast";
 import Button from "../../components/common/Button";
 import { motion } from "framer-motion";
-
 import {container , item } from "../../motions.js"
 const Loginpage = () => {
   const [loading, setLoading] = useState(false);

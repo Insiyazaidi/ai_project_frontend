@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import authservice from "../../services/authservice";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-
 import {container , item } from "../../motions.js"
 const Registerpage = () => {
   const [loading, setLoading] = useState(false);
