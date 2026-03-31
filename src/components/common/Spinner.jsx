@@ -2,12 +2,44 @@ import React from 'react'
 
 const Spinner = () => {
   return (
-   <div className='flex items-center justify-center p-8'>
-    <svg className='animate-spin h-6 w-6 text-secondary' xmlns="http://www.w3.org/2000/svg" fill ="none" viewBox=' 0 0 24 24'>
-    <circle className='opacity-25' cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
-    <path className='opacity-75' stroke="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12H4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.646z" ></path>
-  </svg>
-   </div>
+    <div className="flex items-center justify-center p-8">
+      <svg
+        className="animate-spin"
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+      >
+        {/* Background circle */}
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          stroke="rgba(56,116,120,0.2)"   // light primary
+          strokeWidth="4"
+          fill="none"
+        />
+
+        {/* Animated arc */}
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          stroke="url(#gradient)"
+          strokeWidth="4"
+          strokeLinecap="round"
+          fill="none"
+          strokeDasharray="90 150"
+        />
+
+        {/* Gradient using your theme */}
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#387478" />       {/* primary */}
+            <stop offset="100%" stopColor="#243642" />     {/* primary-dark */}
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   )
 }
 
