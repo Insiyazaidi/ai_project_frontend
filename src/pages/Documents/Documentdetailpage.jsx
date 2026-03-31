@@ -41,7 +41,7 @@ const getpdfurl = ()=>{
   if(fetchfilepath.startsWith("http://") || fetchfilepath.startsWith("https://")){
     return fetchfilepath   // if already full url then result as it  is 
   }
-  const baseurl = process.env.REACT_APP_API_URL || "http://localhost:8000"
+  const baseurl = process.env.REACT_APP_API_URL || "https://synaply-backend.onrender.com"
   return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
 }  
 
