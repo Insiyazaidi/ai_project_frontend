@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../context/Authcontext'
+
 import toast from 'react-hot-toast'
 import  {User , Mail , Lock} from "lucide-react"
 import Pageheader from '../../components/common/Pageheader'
@@ -11,8 +11,8 @@ const Profilepage = () => {
   const [passwordloading , setpasswordloading] = useState(false)
   const [username , setusername] = useState("")
     const [email , setemail] = useState("")
-      const [currentpassword , setcurrentpassword] = useState("")
-    const [newpassword , setnewpassword] = useState("")
+      const [currentpass , setcurrentpass] = useState("")
+    const [newpass , setnewpass] = useState("")
     const [confirmnewpassword , setconfirmnewpassword] = useState("")
     
     useEffect(()=>{
@@ -22,6 +22,7 @@ const Profilepage = () => {
    try {
 
         const {data} = await authservice.getprofile()
+        console.log(data)
         setusername(data.username)
         setemail(data.email)
       
@@ -41,21 +42,22 @@ const Profilepage = () => {
 
 const handlechangepassword = async(e)=>{
   e.preventDefault()
-  if(newpassword !==confirmnewpassword){
+  if(newpass !==confirmnewpassword){
     toast.error("New passwords do not match")
     return
   }
-  if(newpassword <6){
+  if(newpass<6){
     toast.error("New password must be at least 6 characters long")
     return
   }
   setpasswordloading(true)
   try {
-    await authservice.changepassword({currentpassword , newpassword})
+   const response =  await authservice.changepassword({currentpass , newpass})
+   console.log(response)
     toast.success("Password changed successfully")
-    setcurrentpassword("")
+    setcurrentpass("")
     setconfirmnewpassword("")
-    setnewpassword("")
+    setnewpass("")
   } catch (error) {
     toast.error(error.message || "Failed to change password")
   }
@@ -109,7 +111,7 @@ const handlechangepassword = async(e)=>{
     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
       <Lock className='h-4 w-4 text-neutral-400'/>
     </div>
- <input type='password'value={currentpassword} onChange={(e)=>setcurrentpassword(e.target.value)} required className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent '></input>
+ <input type='password'value={currentpass} onChange={(e)=>setcurrentpass(e.target.value)} required className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent '></input>
   </div>
 </div>
 
@@ -120,7 +122,7 @@ const handlechangepassword = async(e)=>{
   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
     <Lock className='h-4 w-4 text-neutral-400'/>
   </div>
-  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setnewpassword(e.target.value)} value={newpassword} type="password"/>
+  <input className='w-full h-9 pl-9 pr-3 border-neutral-200 rounded-lg bg-slate-100 text-lg text-neutral-900 placeholder-neutral-400 tansition-colors duration-150 focus:ring-2 focus:ring-primary-dark focus:border-transparent' onChange={(e)=>setnewpass(e.target.value)} value={newpass} type="password"/>
 </div>
 </div>
 

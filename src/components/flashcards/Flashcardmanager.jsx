@@ -201,7 +201,8 @@ if(flashcardsets.length===0){
         <p className='text-sm text-slate-500 mb-8 text-center max-w-sm'>Generate flashcards from your document to start learning and reinforce your knowledge</p>
         <button onClick={handlegenerateflashcards} disabled={generating} className='group inline-flex items-center gap-2 px-6 h-12 bg-linear-to-r from-primary-dark to-primary hover:from-primary hover:to-primary text-white font-semibold text-sm rounded-xl transition-all duration-200  active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100'>{generating ? (<>
         
-        <div className='w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin'>Generating</div>
+        <div className='w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin'>
+       </div> Generating
         
         </>):<><Sparkles className='w-4 h-4' strokeWidth={2}/>Generate Flashcards</>}</button>
     </div>

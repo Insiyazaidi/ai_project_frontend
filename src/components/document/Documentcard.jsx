@@ -21,7 +21,7 @@ const navigate = useNavigate()
 
 
 const handlenavigate = ()=>{
-    navigate(`documents/${document._id}`)
+    navigate(`/documents/${document._id}`)
 }
 
 
