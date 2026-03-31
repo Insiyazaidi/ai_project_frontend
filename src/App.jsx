@@ -12,6 +12,7 @@ import Flashcardpage from "./pages/Flashcards/Flashcardpage.jsx";
 import Profilepage from "./pages/Profile/Profilepage.jsx";
 import Protectedroute from "./components/auth/Protectedroute.jsx";
 import { useAuth } from "./context/Authcontext.jsx";
+import Firstimp from "./Firstimp.jsx";
 const App=()=>{
 const {isAuthenticated , loading} = useAuth()
   if(loading){
@@ -24,7 +25,7 @@ const {isAuthenticated , loading} = useAuth()
   return(
 <Router>
   <Routes>
-    <Route path="/" element={isAuthenticated ? <Navigate to ="/dashboard" replace/> : <Navigate to="/login" replace/>}></Route>
+    <Route path="/" element={<Firstimp/>}></Route>
     <Route path="/login" element={<Loginpage/>}/>
     <Route path="/register" element={<Registerpage/>}/>
    <Route element={<Protectedroute/>}/>

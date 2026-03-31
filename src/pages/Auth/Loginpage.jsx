@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { BrainCircuit, Mail, Lock, ArrowRight } from "lucide-react";
+import { BrainCircuit, Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import authservice from "../../services/authservice";
 import toast from "react-hot-toast";
-
 const Loginpage = () => {
   const [loading, setLoading] = useState(false);
   const [password, setpassword] = useState("");
@@ -34,7 +33,16 @@ const Loginpage = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100">
+
+<div>
+
+<div className="flex justify-start mt-7 ml-7">
+<button className="flex gap-1" onClick={()=>navigate("/")}><ArrowLeft/>Back</button>
+</div>
+
+
+
+ <div className="relative flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100">
 
      
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px] opacity-30 pointer-events-none"></div>
@@ -173,6 +181,10 @@ const Loginpage = () => {
     
       </div>
     </div>
+
+</div>
+  
+   
   );
 };
 
