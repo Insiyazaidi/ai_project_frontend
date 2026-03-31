@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Outlet } from 'react-router';
 import { Navigate } from 'react-router';
 import Applayout from '../layout/Applayout';

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router , Routes , Route  } from "react-router-dom"
-import Loginpage from "./pages/auth/Loginpage";
-import Registerpage from "./pages/auth/Registerpage";
+
 import Notfoundpage from "./pages/Notfoundpage";
 import Dashboardpage from "./pages/dashboard/Dashboardpage";
 import Quiztakepage from "./pages/Quizzes/Quiztakepage";
@@ -26,8 +25,7 @@ const {isAuthenticated , loading} = useAuth()
 <Router>
   <Routes>
     <Route path="/" element={<Firstimp/>}></Route>
-    <Route path="/login" element={<Loginpage/>}/>
-    <Route path="/register" element={<Registerpage/>}/>
+    
    <Route element={<Protectedroute/>}/>
     <Route path="/dashboard" element={<Dashboardpage/>}/>
      <Route path="/documents/:id" element={<Documentdetailpage/>}/>
