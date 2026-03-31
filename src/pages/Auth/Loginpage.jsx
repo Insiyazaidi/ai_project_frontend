@@ -4,6 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import authservice from "../../services/authservice";
 import toast from "react-hot-toast";
+import Button from "../../components/common/Button";
+import { motion } from "framer-motion";
+
+import {container , item } from "../../motions.js"
 const Loginpage = () => {
   const [loading, setLoading] = useState(false);
   const [password, setpassword] = useState("");
@@ -34,10 +38,12 @@ const Loginpage = () => {
 
   return (
 
-<div>
+<motion.div variants={container}
+  initial="hidden"
+  animate="show" className="h-screen overflow-hidden">
 
 <div className="flex justify-start mt-7 ml-7">
-<button className="flex gap-1" onClick={()=>navigate("/")}><ArrowLeft/>Back</button>
+<Button className="flex gap-1" onClick={()=>navigate("/")}><ArrowLeft/>Back</Button>
 </div>
 
 
@@ -48,7 +54,7 @@ const Loginpage = () => {
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px] opacity-30 pointer-events-none"></div>
 
       {/* Card */}
-      <div className="relative w-full max-w-md px-6">
+      <motion.div variants={item}   className="relative w-full max-w-md px-6">
         <form
           onSubmit={handlesubmit}
           className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-xl shadow-slate-200/50 p-10"
@@ -179,10 +185,10 @@ const Loginpage = () => {
           By continuing, you agree to our Terms & Privacy Policy
         </p>
     
-      </div>
+      </motion.div>
     </div>
 
-</div>
+</motion.div>
   
    
   );

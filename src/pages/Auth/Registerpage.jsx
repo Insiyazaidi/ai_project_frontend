@@ -3,7 +3,9 @@ import { BrainCircuit, Mail, Lock, ArrowRight , User } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import authservice from "../../services/authservice";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
+import {container , item } from "../../motions.js"
 const Registerpage = () => {
   const [loading, setLoading] = useState(false);
   const [password, setpassword] = useState("");
@@ -35,16 +37,18 @@ seterror("")
 
   }
   return (
-     <div className="relative flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100">
+     <motion.div variants={container}  
+       initial="hidden"
+       animate="show" className="relative flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100">
    
         
          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [bg-size:16px_16px] opacity-30 pointer-events-none"></div>
    
          {/* Card */}
-         <div className="relative w-full max-w-md px-6">
-           <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-xl shadow-slate-200/50 p-10">
+         <motion.div variants={item} className="relative w-full max-w-md px-6">
+           <motion.div variants={item} className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-xl shadow-slate-200/50 p-10">
              {/* Header */}
-             <div className="text-center mb-5">
+             <motion.div variants={item} className="text-center mb-5">
                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary-dark shadow-lg shadow-color- mb-6">
                  <BrainCircuit className="w-7 h-7 text-white" strokeWidth={2} />
                </div>
@@ -55,7 +59,7 @@ seterror("")
                <p className="text-slate-800 text-sm">
                 Start your AI-powered learning experience
                </p>
-             </div>
+             </motion.div>
 
 
     
@@ -63,7 +67,7 @@ seterror("")
     
   
 
-          <div className="space-y-5">
+          <motion.div variants={item} className="space-y-5">
    {/* USERNAME */}
             <div className="space-y-2">
               <label className="block text-xs font-semibold text-primary-dark uppercase tracking-wide">
@@ -169,7 +173,8 @@ seterror("")
             )}
 
             {/* BUTTON */}
-            <button
+            <button  
+
               type="submit"
               disabled={loading}
               onClick={handlesubmit}
@@ -188,7 +193,7 @@ seterror("")
 
               <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </button>
-          </div>
+          </motion.div>
 
        
         
@@ -210,14 +215,14 @@ seterror("")
    
              {/* Footer */}
         
-           </div>
+           </motion.div>
       
            <p className="text-center text-xs text-slate-600 mt-2">
              By continuing, you agree to our Terms & Privacy Policy
            </p>
        
-         </div>
-       </div>
+         </motion.div>
+       </motion.div>
   )
 }
 
