@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 const Spinner = () => {
   return (
-    <div className="flex items-center justify-center p-8">
+    <div className="flex items-center justify-center h-screen gap-3">
       <svg
         className="animate-spin"
         width="50"
@@ -14,7 +14,7 @@ const Spinner = () => {
           cx="25"
           cy="25"
           r="20"
-          stroke="rgba(56,116,120,0.2)"   // light primary
+          stroke="rgba(56,116,120,0.2)"
           strokeWidth="4"
           fill="none"
         />
@@ -31,16 +31,18 @@ const Spinner = () => {
           strokeDasharray="90 150"
         />
 
-        {/* Gradient using your theme */}
+        {/* Gradient */}
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#387478" />       {/* primary */}
-            <stop offset="100%" stopColor="#243642" />     {/* primary-dark */}
+            <stop offset="0%" stopColor="#387478" />
+            <stop offset="100%" stopColor="#243642" />
           </linearGradient>
         </defs>
       </svg>
-    </div>
-  )
-}
 
-export default Spinner
+      <p className="text-lg font-medium text-gray-300">Loading...</p>
+    </div>
+  );
+};
+
+export default Spinner;
