@@ -3,7 +3,7 @@ import examboy from "../src/assets/Exams-brooo.svg"
 import { useNavigate } from 'react-router';
 import { motion } from "framer-motion";
 import {container , item , heading , buttonAnim , imageAnim} from "./motions.js"
-
+const { isAuthenticated } = useAuth();
 const Firstimp = () => {
     const navigate = useNavigate()
   return (
@@ -27,9 +27,13 @@ const Firstimp = () => {
            Organize, revise, and test yourself with tools designed to help you actually retain what you learn.
           </motion.p>
 
-          <motion.button variants={buttonAnim} onClick={()=>navigate("/login")} className="mt-8 bg-white text-primary-dark px-6 py-3 rounded-full font-semibold  transition">
-            Get Started
-          </motion.button>
+         <motion.button
+  variants={buttonAnim}
+  onClick={() => navigate(isAuthenticated ? "/dashboard" : "/login")}
+  className="mt-8 bg-white text-primary-dark px-6 py-3 rounded-full font-semibold transition"
+>
+  {isAuthenticated ? "Go to Dashboard" : "Get Started"}
+</motion.button>
         </div>
 
 
