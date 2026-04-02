@@ -28,7 +28,7 @@ const {isAuthenticated , loading} = useAuth()
       <Route
         path="/"
         element={
-          isAuthenticated ? <Navigate to="/dashboard" /> : <Firstimp />
+           <Firstimp />
         }
       />
    
