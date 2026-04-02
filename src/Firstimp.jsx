@@ -3,9 +3,10 @@ import examboy from "../src/assets/Exams-brooo.svg"
 import { useNavigate } from 'react-router';
 import { motion } from "framer-motion";
 import {container , item , heading , buttonAnim , imageAnim} from "./motions.js"
-const { isAuthenticated } = useAuth();
+import { useAuth } from "./context/Authcontext";
 const Firstimp = () => {
     const navigate = useNavigate()
+    const { isAuthenticated } = useAuth();
   return (
    <motion.div variants={container}
   initial="hidden"
