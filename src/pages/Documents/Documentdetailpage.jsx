@@ -38,7 +38,7 @@ const Documentdetailpage = () => {
 const getpdfurl = ()=>{
   if(!document?.data?.filepath) return null;
   const fetchfilepath = document.data.filepath
-  console.log(fetchfilepath)
+  // console.log(fetchfilepath)
  
   if(fetchfilepath.startsWith("http://") || fetchfilepath.startsWith("https://")){
     return fetchfilepath   // if already full url then result as it  is 
@@ -59,6 +59,7 @@ const rendercontent =()=>{
   }
 
   const pdfurl = getpdfurl();
+  console.log(pdfurl)
   return(
     <div className='bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm'>
       <div className='flex items-center justify-between p-4 bg-gray-50 border-b border-gray-300'>
@@ -69,7 +70,7 @@ const rendercontent =()=>{
       </div>
 
 <div className='bg-gray-100 p-1'>
-  <iframe src={pdfurl} className='w-full h-[70vh] bg-white rounded border border-gray-300' title="PDF Viewer" frameBorder="0" style ={{colorScheme:"light"}}/>
+  <iframe src={pdfurl} className='w-full h-[70vh] bg-white rounded border border-gray-300' title="PDF Viewer"  style ={{colorScheme:"light"}}/>
 </div>
     </div>
   )

@@ -2,7 +2,7 @@
 
 const Spinner = () => {
   return (
-    <div className="flex items-center justify-center h-screen gap-3">
+    <div className="flex items-center justify-center p-8">
       <svg
         className="animate-spin"
         width="50"
