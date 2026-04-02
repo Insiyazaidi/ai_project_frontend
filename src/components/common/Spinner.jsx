@@ -40,7 +40,7 @@ const Spinner = () => {
         </defs>
       </svg>
 
-      <p className="text-lg font-medium text-gray-300">Loading...</p>
+      <p className="text-lg font-medium text-primary-dark">Loading...</p>
     </div>
   );
 };
