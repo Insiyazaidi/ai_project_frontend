@@ -25,7 +25,13 @@ const {isAuthenticated , loading} = useAuth()
   return(
 <Router>
   <Routes>
-    <Route path="/" element={<Firstimp/>}></Route>
+      <Route
+        path="/"
+        element={
+          isAuthenticated ? <Navigate to="/dashboard" /> : <Firstimp />
+        }
+      />
+   
     <Route path="/login" element={<Loginpage/>}/>
     <Route path="/register" element={<Registerpage/>}/>
    <Route element={<Protectedroute/>}/>

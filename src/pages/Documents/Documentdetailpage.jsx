@@ -38,6 +38,14 @@ const Documentdetailpage = () => {
 const getpdfurl = ()=>{
   if(!document?.data?.filepath) return null;
   const fetchfilepath = document.data.filepath
+  console.log(fetchfilepath)
+    // 🔥 FIX: replace localhost with deployed backend
+  if (fetchfilepath.includes("localhost")) {
+    fetchfilepath = fetchfilepath.replace(
+      "http://localhost:10000",
+      "https://synaply-backend.onrender.com"
+    );
+  }
   if(fetchfilepath.startsWith("http://") || fetchfilepath.startsWith("https://")){
     return fetchfilepath   // if already full url then result as it  is 
   }
