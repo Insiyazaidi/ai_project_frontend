@@ -3,7 +3,7 @@ import examboy from "../src/assets/Exams-brooo.svg"
 import { useNavigate } from 'react-router';
 import { motion } from "framer-motion";
 import {container , item , heading , buttonAnim , imageAnim} from "./motions.js"
-import { useAuth } from "./context/Authcontext";
+import { useAuth } from './context/Authcontext.jsx';
 const Firstimp = () => {
     const navigate = useNavigate()
     const { isAuthenticated } = useAuth();
