@@ -47,7 +47,11 @@ const Documentdetailpage = () => {
 // }  
 
 const getpdfurl = () => {
-  return document?.data?.filepath || null;
+  if(!document?.data?.filepath) return null;
+   let fetchfilepath = document.data.filepath
+   console.log("filepath" , fetchfilepath)
+ const baseurl =  "https://synaply.onrender.com"
+ return `${baseurl}`
 };
 
 
