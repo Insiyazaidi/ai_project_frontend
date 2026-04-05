@@ -45,7 +45,7 @@ const getpdfurl = ()=>{
     const url = new URL(fetchfilepath);
     fetchfilepath = url.pathname; // "/uploads/documents/file.pdf"
   }
-  const baseurl =  "https://synaply-backend.onrender.com"
+  const baseurl =  "https://synaply.onrender.com"
   return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
 }  
 
