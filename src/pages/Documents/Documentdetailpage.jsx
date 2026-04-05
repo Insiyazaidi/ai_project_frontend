@@ -38,6 +38,7 @@ const Documentdetailpage = () => {
 const getpdfurl = ()=>{
   if(!document?.data?.filepath) return null;
   const fetchfilepath = document.data.filepath
+  console.log("FILEPATH FROM DB:", document.data.filepath)
   // console.log(fetchfilepath)
  
   if(fetchfilepath.startsWith("http://") || fetchfilepath.startsWith("https://")){
