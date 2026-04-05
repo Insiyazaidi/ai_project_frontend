@@ -35,16 +35,20 @@ const Documentdetailpage = () => {
   } , [id])
 
 // helper function to get the full pdf url 
-const getpdfurl = ()=>{
-  if(!document?.data?.filepath) return null;
-  let fetchfilepath = document.data.filepath
-  console.log("FILEPATH FROM DB:", document.data.filepath)
+// const getpdfurl = ()=>{
+//   if(!document?.data?.filepath) return null;
+//   let fetchfilepath = document.data.filepath
+//   console.log("FILEPATH FROM DB:", document.data.filepath)
  
- // const baseurl =  "https://synaply.onrender.com"
- // return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
- return fetchfilepath
+//  // const baseurl =  "https://synaply.onrender.com"
+//  // return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
+//  return fetchfilepath
 
-}  
+// }  
+
+const getpdfurl = () => {
+  return document?.data?.filepath || null;
+};
 
 
 // RENDER CONTENT VLA FUNCTION ISSE FILE M DEFINE KRDIA H 
