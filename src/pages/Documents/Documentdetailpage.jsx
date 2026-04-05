@@ -39,14 +39,11 @@ const getpdfurl = ()=>{
   if(!document?.data?.filepath) return null;
   let fetchfilepath = document.data.filepath
   console.log("FILEPATH FROM DB:", document.data.filepath)
-  // console.log(fetchfilepath)
  
-   if (fetchfilepath.startsWith("http")) {
-    const url = new URL(fetchfilepath);
-    fetchfilepath = url.pathname; // "/uploads/documents/file.pdf"
-  }
-  const baseurl =  "https://synaply.onrender.com"
-  return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
+ // const baseurl =  "https://synaply.onrender.com"
+ // return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
+ return fetchfilepath
+
 }  
 
 
