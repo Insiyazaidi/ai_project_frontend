@@ -243,9 +243,24 @@ return( // if documents are present  then display them on ui using documentcard 
 <div className='flex gap-3'>
   <button type="button" onClick={()=>setisdeletemodalopen(false) } className='flex-1 h-11 px-4 border-2 border-slate-200 rounded-xl bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'disabled={deleting}>Cancel</button>
 <button onClick={handleconfirmdelete} disabled={deleting} className='flex-1 h-11 px-4 bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-red-500/25 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]'>
-  { deleting? (
-<span className='flex items-center justify-center gap-2'><div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'>Deleting...</div></span>
-  ) :( "Delete")}
+ 
+ 
+ 
+{deleting ? (
+  <span className='flex items-center justify-center gap-2'>
+    
+  
+    <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
+
+    <span>Deleting...</span>
+
+  </span>
+) : (
+  "Delete"
+)}
+
+
+
 </button>
 </div>
   </div>
