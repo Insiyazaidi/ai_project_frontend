@@ -5,6 +5,12 @@ import { motion } from "framer-motion";
 import {container , item , heading , buttonAnim , imageAnim} from "./motions.js"
 import { useAuth } from './context/Authcontext.jsx';
 const Firstimp = () => {
+  const texts = [
+  "not just answers.",
+  "real understanding.",
+  "deep focus.",
+  "true clarity."
+];
     const navigate = useNavigate()
     const { isAuthenticated } = useAuth();
   return (
@@ -20,9 +26,28 @@ const Firstimp = () => {
   Synaply 
   
 </motion.h1>
+
+
           <motion.h1 variants={item}  className="text-5xl font-bold leading-tight text-soft">
-       Built for focused learning - <br /> not just answers.
+       Built for focused learning - <br /> 
+
+<AnimatePresence mode="wait">
+        <motion.span
+          key={texts[index]}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.5 }}
+        >
+          {texts[index]}
+        </motion.span>
+      </AnimatePresence>
+
+
+
           </motion.h1>
+
+
 
           <motion.p variants={item} className="mt-6 text-gray-400 text-lg">
            Organize, revise, and test yourself with tools designed to help you actually retain what you learn.
