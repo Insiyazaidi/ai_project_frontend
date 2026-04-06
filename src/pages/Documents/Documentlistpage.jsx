@@ -215,7 +215,7 @@ return( // if documents are present  then display them on ui using documentcard 
   <button type='button' onClick={()=>setisuploadmodelopen(false)} disabled={uploading} className='flex-1 h-11 px-4 border-2 border-slate-200 rounded-xl bg-white  text-slate-700 text-sm font-semibold hover:bg-slate-50 hover:border-slate-300 transition-allduration-200 disabled:opacity-50 disabled:cursor-not-allowed'>Cancel </button>
   <button type='submit' disabled={uploading} className='flex-1 h-11 px-4 bg-primary-dark hover:bg-primary text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-soft disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]'>{uploading ?
   
-  (<span className='flex items-center justify-center gap-2'><div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'>Uploading...</div></span>):("Upload")}</button>
+  (<span className='flex items-center justify-center gap-2'><div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>Uploading...</span>):("Upload")}</button>
 </div>
 
 </form>
