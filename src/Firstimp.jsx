@@ -57,12 +57,12 @@ const Firstimp = () => {
 
         {/* LEFT */}
         <div>
-          <motion.h1
-            variants={heading}
+          <h1
+           
             className="flex items-center text-9xl font-bold leading-tight mb-8"
           >
             Synaply
-          </motion.h1>
+          </h1>
 
           <motion.h1
             variants={item}
