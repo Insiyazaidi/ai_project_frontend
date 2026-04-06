@@ -13,35 +13,72 @@ const Firstimp = () => {
   "turning doubts into clarity", 
 
   ];
-
+const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
-  useEffect(() => {
-    const currentText = texts[textIndex];
+  // useEffect(() => {
+  //   const currentText = texts[textIndex];
 
-    // typing effect
-    if (charIndex < currentText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + currentText[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 50); // speed
+  //   // typing effect
+  //   if (charIndex < currentText.length) {
+  //     const timeout = setTimeout(() => {
+  //       setDisplayedText((prev) => prev + currentText[charIndex]);
+  //       setCharIndex((prev) => prev + 1);
+  //     }, 50); // speed
 
-      return () => clearTimeout(timeout);
-    }
+  //     return () => clearTimeout(timeout);
+  //   }
 
-    // wait after full text typed
-    else {
-      const delay = setTimeout(() => {
-        setTextIndex((prev) => (prev + 1) % texts.length);
-        setDisplayedText("");
-        setCharIndex(0);
-      }, 2000);
+  //   // wait after full text typed
+  //   else {
+  //     const delay = setTimeout(() => {
+  //       setTextIndex((prev) => (prev + 1) % texts.length);
+  //       setDisplayedText("");
+  //       setCharIndex(0);
+  //     }, 2000);
 
-      return () => clearTimeout(delay);
-    }
-  }, [charIndex, textIndex]);
+  //     return () => clearTimeout(delay);
+  //   }
+  // }, [charIndex, textIndex]);
+
+useEffect(() => {
+  const currentText = texts[textIndex];
+
+  let timeout;
+
+  if (!isDeleting && charIndex < currentText.length) {
+    // typing
+    timeout = setTimeout(() => {
+      setDisplayedText((prev) => prev + currentText[charIndex]);
+      setCharIndex((prev) => prev + 1);
+    }, 40);
+  } 
+  else if (!isDeleting && charIndex === currentText.length) {
+    // pause before deleting
+    timeout = setTimeout(() => {
+      setIsDeleting(true);
+    }, 1200);
+  } 
+  else if (isDeleting && charIndex > 0) {
+    // deleting
+    timeout = setTimeout(() => {
+      setDisplayedText((prev) => prev.slice(0, -1));
+      setCharIndex((prev) => prev - 1);
+    }, 20);
+  } 
+  else if (isDeleting && charIndex === 0) {
+    // move to next text
+    setIsDeleting(false);
+    setTextIndex((prev) => (prev + 1) % texts.length);
+  }
+
+  return () => clearTimeout(timeout);
+}, [charIndex, isDeleting, textIndex]);
+
+
+
 
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
