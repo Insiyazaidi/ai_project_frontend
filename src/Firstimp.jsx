@@ -8,8 +8,8 @@ import { useAuth } from './context/Authcontext.jsx';
 const Firstimp = () => {
 
   const texts = [
-    "late-night study grinds",
-  "last-minute revisions",
+    "late night study grinds",
+  "last minute revisions",
   "turning doubts into clarity", 
 
   ];
@@ -72,7 +72,7 @@ const Firstimp = () => {
 
             <span>
               {displayedText}
-              <span className="animate-pulse">..</span>
+              <span className="animate-pulse">.</span>
             </span>
           </motion.h1>
 
