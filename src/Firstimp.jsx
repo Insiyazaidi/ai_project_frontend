@@ -8,10 +8,10 @@ import { useAuth } from './context/Authcontext.jsx';
 const Firstimp = () => {
 
   const texts = [
-    "not just answers.",
-    "real understanding.",
-    "deep focus.",
-    "true clarity."
+    "late-night study grinds",
+  "last-minute revisions",
+  "turning doubts into clarity", 
+
   ];
 
   const [textIndex, setTextIndex] = useState(0);
@@ -68,11 +68,11 @@ const Firstimp = () => {
             variants={item}
             className="text-5xl font-bold leading-tight text-soft"
           >
-            Built for focused learning - <br />
+            Built for - <br />
 
             <span>
               {displayedText}
-              <span className="animate-pulse">|</span>
+              <span className="animate-pulse">..</span>
             </span>
           </motion.h1>
 
