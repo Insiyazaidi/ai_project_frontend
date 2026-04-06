@@ -35,24 +35,27 @@ const Documentdetailpage = () => {
   } , [id])
 
 // helper function to get the full pdf url 
-// const getpdfurl = ()=>{
-//   if(!document?.data?.filepath) return null;
-//   let fetchfilepath = document.data.filepath
-//   console.log("FILEPATH FROM DB:", document.data.filepath)
- 
-//  // const baseurl =  "https://synaply.onrender.com"
-//  // return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
-//  return fetchfilepath
 
-// }  
 
-const getpdfurl = () => {
-  if(!document?.data?.filepath) return null;
+ const getpdfurl = ()=>{
+  console.log(document.data)
+   if(!document?.data?.filepath) return null;
    let fetchfilepath = document.data.filepath
-   console.log("filepath" , fetchfilepath)
- const baseurl =  "https://synaply.onrender.com"
- return `${baseurl}`
-};
+  console.log("FILEPATH FROM DB:", document.data.filepath)
+  const baseurl =  "https://synaply-backend.onrender.com"
+    return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
+ 
+
+ }  
+
+// const getpdfurl = () => {
+//   if(!document?.data?.filepath) return null;
+//    let fetchfilepath = document.data.filepath
+//    console.log("data" , document.data)
+//    console.log("filepath" , fetchfilepath)
+//  const baseurl =  "https://synaply.onrender.com"
+//  return `${baseurl}/uploads/document/`
+// };
 
 
 // RENDER CONTENT VLA FUNCTION ISSE FILE M DEFINE KRDIA H 
