@@ -106,11 +106,13 @@ useEffect(() => {
             className="text-5xl font-bold leading-tight text-soft"
           >
             Built for - <br />
-
-            <span>
+<div className='h-15 flex items-center'>
+  <span>
               {displayedText}
-              <span className="animate-pulse"></span>
+              <span className=" ml-1 animate-pulse">.</span>
             </span>
+</div>
+          
           </h1>
 
           <p variants={item} className="mt-6 text-gray-400 text-lg">
