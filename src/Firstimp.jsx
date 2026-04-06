@@ -72,7 +72,7 @@ const Firstimp = () => {
 
             <span>
               {displayedText}
-              <span className="animate-pulse">.</span>
+              <span className="animate-pulse"></span>
             </span>
           </motion.h1>
 
