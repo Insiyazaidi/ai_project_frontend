@@ -42,8 +42,14 @@ const Documentdetailpage = () => {
    if(!document?.data?.filepath) return null;
    let fetchfilepath = document.data.filepath
   console.log("FILEPATH FROM DB:", document.data.filepath)
-  const baseurl =  "https://synaply-backend.onrender.com"
-    return `${baseurl}${fetchfilepath.startsWith("/")? "":"/"}${fetchfilepath}`  // here fetchfilepath will contain only uploads/filename so we need to conver it into full url
+
+  const baseurl = "https://synaply-backend.onrender.com"
+
+if (fetchfilepath.startsWith("http")) {
+  return fetchfilepath
+}
+
+return `${baseurl}${fetchfilepath.startsWith("/") ? "" : "/"}${fetchfilepath}`
  
 
  }  
