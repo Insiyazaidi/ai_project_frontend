@@ -84,7 +84,7 @@ useEffect(() => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <motion.div
+    <div
       variants={container}
       initial="hidden"
       animate="show"
@@ -101,8 +101,8 @@ useEffect(() => {
             Synaply
           </h1>
 
-          <motion.h1
-            variants={item}
+          <h1
+           
             className="text-5xl font-bold leading-tight text-soft"
           >
             Built for - <br />
@@ -111,19 +111,19 @@ useEffect(() => {
               {displayedText}
               <span className="animate-pulse"></span>
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={item} className="mt-6 text-gray-400 text-lg">
+          <p variants={item} className="mt-6 text-gray-400 text-lg">
             Organize, revise, and test yourself with tools designed to help you actually retain what you learn.
-          </motion.p>
+          </p>
 
-          <motion.button
+          <button
             variants={buttonAnim}
             onClick={() => navigate(isAuthenticated ? "/dashboard" : "/login")}
             className="mt-8 bg-white text-primary-dark px-6 py-3 rounded-full font-semibold transition"
           >
             {isAuthenticated ? "Go to Dashboard" : "Get Started"}
-          </motion.button>
+          </button>
         </div>
 
         {/* RIGHT */}
@@ -132,7 +132,7 @@ useEffect(() => {
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };
 
