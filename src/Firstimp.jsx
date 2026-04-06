@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import examboy from "../src/assets/Exams-brooo.svg";
 import { useNavigate } from 'react-router';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { container, item, heading, buttonAnim, imageAnim } from "./motions.js";
 import { useAuth } from './context/Authcontext.jsx';
 
@@ -14,15 +14,34 @@ const Firstimp = () => {
     "true clarity."
   ];
 
-  const [index, setIndex] = useState(0);
+  const [textIndex, setTextIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % texts.length);
-    }, 2000);
+    const currentText = texts[textIndex];
 
-    return () => clearInterval(interval);
-  }, []);
+    // typing effect
+    if (charIndex < currentText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + currentText[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      }, 50); // speed
+
+      return () => clearTimeout(timeout);
+    }
+
+    // wait after full text typed
+    else {
+      const delay = setTimeout(() => {
+        setTextIndex((prev) => (prev + 1) % texts.length);
+        setDisplayedText("");
+        setCharIndex(0);
+      }, 2000);
+
+      return () => clearTimeout(delay);
+    }
+  }, [charIndex, textIndex]);
 
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
@@ -51,17 +70,10 @@ const Firstimp = () => {
           >
             Built for focused learning - <br />
 
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={texts[index]}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5 }}
-              >
-                {texts[index]}
-              </motion.span>
-            </AnimatePresence>
+            <span>
+              {displayedText}
+              <span className="animate-pulse">|</span>
+            </span>
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 text-gray-400 text-lg">
