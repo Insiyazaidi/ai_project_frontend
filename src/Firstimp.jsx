@@ -1,7 +1,7 @@
 import React from 'react'
 import examboy from "../src/assets/Exams-brooo.svg"
 import { useNavigate } from 'react-router';
-import { motion } from "framer-motion";
+import { motion , AnimatePresence } from "framer-motion";
 import {container , item , heading , buttonAnim , imageAnim} from "./motions.js"
 import { useAuth } from './context/Authcontext.jsx';
 const Firstimp = () => {
