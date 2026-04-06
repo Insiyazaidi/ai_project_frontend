@@ -18,31 +18,6 @@ const [isDeleting, setIsDeleting] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
-  // useEffect(() => {
-  //   const currentText = texts[textIndex];
-
-  //   // typing effect
-  //   if (charIndex < currentText.length) {
-  //     const timeout = setTimeout(() => {
-  //       setDisplayedText((prev) => prev + currentText[charIndex]);
-  //       setCharIndex((prev) => prev + 1);
-  //     }, 50); // speed
-
-  //     return () => clearTimeout(timeout);
-  //   }
-
-  //   // wait after full text typed
-  //   else {
-  //     const delay = setTimeout(() => {
-  //       setTextIndex((prev) => (prev + 1) % texts.length);
-  //       setDisplayedText("");
-  //       setCharIndex(0);
-  //     }, 2000);
-
-  //     return () => clearTimeout(delay);
-  //   }
-  // }, [charIndex, textIndex]);
-
 useEffect(() => {
   const currentText = texts[textIndex];
 
@@ -53,22 +28,23 @@ useEffect(() => {
     timeout = setTimeout(() => {
       setDisplayedText((prev) => prev + currentText[charIndex]);
       setCharIndex((prev) => prev + 1);
-    }, 40);
+    }, 40);  // after every 40 sec next char will be displayed ..
   } 
-  else if (!isDeleting && charIndex === currentText.length) {
+  else if (!isDeleting && charIndex === currentText.length) { // if fuully typed 
     // pause before deleting
     timeout = setTimeout(() => {
-      setIsDeleting(true);
+      setIsDeleting(true);  // setdeletingtrue after 1200 sec .. wait 1200 sec after that one sentence is typed 
     }, 1200);
   } 
-  else if (isDeleting && charIndex > 0) {
+  else if (isDeleting && charIndex > 0) { //  we are deleting and still letter exist 
     // deleting
     timeout = setTimeout(() => {
-      setDisplayedText((prev) => prev.slice(0, -1));
-      setCharIndex((prev) => prev - 1);
+      setDisplayedText((prev) => prev.slice(0, -1)); // hr baar last char remove hojaiga 
+      setCharIndex((prev) => prev - 1);  // -1 is  last character 
     }, 20);
   } 
-  else if (isDeleting && charIndex === 0) {
+  else if (isDeleting && charIndex === 0) {  // fully delete then move to next char .. 
+
     // move to next text
     setIsDeleting(false);
     setTextIndex((prev) => (prev + 1) % texts.length);
