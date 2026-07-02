@@ -46,7 +46,7 @@ const explainconcept = async(documentid , concept)=>{
 
 const getchathistory = async(documentid)=>{
     try {
-     const response = await axiosinstance.post(API_PATHS.AI.GET_CHAT_HISTORY, {documentid})
+     const response = await axiosinstance.get(API_PATHS.AI.GET_CHAT_HISTORY(documentid))
      return response.data   
     } catch (error) {
        throw error.response?.data|| {message:"Failed to fetch chat history"} 

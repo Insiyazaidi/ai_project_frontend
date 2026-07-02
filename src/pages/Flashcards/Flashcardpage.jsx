@@ -53,24 +53,24 @@ const handlegenerateflashcards = async()=>{
 }
 
 const handlenextcard = ()=>{
-    if(selectedset){
+    if(flashcards.length > 0){
         handlereview(currentcardindex)  // jb bhi prev ya next card pr click krrhe h toh phle handlereview call horha hh 
-        setcurrentcardindex((previndex)=>(previndex+1)%selectedset.cards.length)  // circular iteration ke liye ... 
+        setcurrentcardindex((previndex)=>(previndex+1)%flashcards.length)  // circular iteration ke liye ... 
         // previndex -9 (last card) , previndex+1 10 %10 = 0 which means it will show 0 th index card ie first one ... 
     }
 }
 
 
 const handleprevcard = ()=>{
-    if(selectedset){
+    if(flashcards.length > 0){
         handlereview(currentcardindex)
-         setcurrentcardindex((previndex)=>(previndex-1+selectedset.cards.length)%selectedset.cards.length)
+         setcurrentcardindex((previndex)=>(previndex-1+flashcards.length)%flashcards.length)
     }
 }
 
 
 const handlereview = async(index)=>{  // yha pr vo card aarha h vo hmne dekh liya .. 
-    const currentcard = selectedset?.cards[currentcardindex]  // currentcard ka data 
+    const currentcard = flashcards[currentcardindex]  // currentcard ka data 
     if(!currentcard) return 
     try {
         await flashcardservice.reviewflashcard(currentcard._id , index)
@@ -130,7 +130,7 @@ const currentcard = flashcards[currentcardindex]
      <ChevronLeft size={16}/>Previous
     </Button>
  <span className='text-sm text-neutral-600 '>{currentcardindex+1}/{flashcards.length}</span>
-   <Button onClick={handlenextcard} variant = "secondary" disabled={currentcardindex === flashcards.length - 1}>
+   <Button onClick={handlenextcard} variant = "secondary" disabled={flashcards.length <= 1}>
      Next<ChevronRight size={16}/>
     </Button>
 </div>
