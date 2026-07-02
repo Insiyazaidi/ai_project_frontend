@@ -130,8 +130,8 @@ const currentcard = flashcards[currentcardindex]
      <ChevronLeft size={16}/>Previous
     </Button>
  <span className='text-sm text-neutral-600 '>{currentcardindex+1}/{flashcards.length}</span>
-   <Button onClick={handlenextcard} variant = "secondary" disabled={flashcards.length<=1}>
-     Next<ChevronLeft size={16}/>
+   <Button onClick={handlenextcard} variant = "secondary" disabled={currentcardindex === flashcards.length - 1}>
+     Next<ChevronRight size={16}/>
     </Button>
 </div>
 
